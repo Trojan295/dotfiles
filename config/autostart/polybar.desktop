@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=polybar top
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[en_US]=Polybar
+Name=Polybar
+Comment[en_US]=
+Comment=

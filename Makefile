@@ -1,5 +1,5 @@
 
-all: prepare_debian install dotfile
+all: prepare_debian install dotfiles
 
 prepare_debian:
 	chmod +x ./scripts/debian.sh
