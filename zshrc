@@ -11,7 +11,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
-plugin=(
+plugins=(
   debian docker git kubectl lol systemd ssh-agent zsh-navigation-tools
 )
 
