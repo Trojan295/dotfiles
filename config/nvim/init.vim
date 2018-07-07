@@ -33,7 +33,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 Plug 'moll/vim-node'
 Plug 'Valloric/YouCompleteMe'
-Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'reedes/vim-colors-pencil', {'as': 'pencil'}
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
@@ -154,7 +154,8 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme dracula
+  colorscheme pencil
+  set background=dark
 endif
 
 set mousemodel=popup
@@ -176,7 +177,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
 endif
 
 
@@ -208,7 +209,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'pencil'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1

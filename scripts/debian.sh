@@ -73,7 +73,7 @@ function install_polybar {
 }
 
 function install_other {
-  sudo apt-get install -y compton vim zsh redshift
+  sudo apt-get install -y compton neovim zsh redshift
   chsh -s $(which zsh)
 }
 
