@@ -1,8 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=polybar top
+Exec=polybar main
 Hidden=false
 X-MATE-Autostart-enabled=true
+X-Mate-Autostart-Delay=5
 Name[en_US]=Polybar
 Name=Polybar
 Comment[en_US]=
