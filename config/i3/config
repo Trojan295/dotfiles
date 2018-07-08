@@ -18,7 +18,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # application menu
-bindsym $mod+d exec --no-startup-id dmenu_run -l 5
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop 
 
 # change focus
 bindsym $mod+j focus left
