@@ -1,17 +1,20 @@
 
 " ----------------- Plugins -----------------
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
-Plug 'scrooloose/nerdtree'
-Plug 'jiangmiao/auto-pairs'
-
+" Visual
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'reedes/vim-colors-pencil'
 
-call plug#end()
+" Functional
+Plug 'scrooloose/nerdtree'
+Plug 'Chiel92/vim-autoformat'
 
+" Python
+Plug 'nvie/vim-flake8'
+
+call plug#end()
 
 " ----------------- NERDTree ----------------
 
@@ -33,11 +36,13 @@ let g:airline_theme = 'pencil'
 " ----------------- Other -------------------
 
 " Whitespace behaviour
-setlocal tabstop=2
-setlocal shiftwidth=2
-setlocal expandtab
-setlocal autoindent
-setlocal smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+
+au BufWrite * :Autoformat
 
 " Enable line numbers
 set number
