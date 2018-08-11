@@ -37,7 +37,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 modules-left = i3
-modules-right = xkeyboard filesystem cpu memory temperature battery wlan eth date
+modules-right = github filesystem cpu memory temperature battery xkeyboard wlan eth date
 
 tray-position = right
 tray-padding = 2
@@ -53,10 +53,8 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -235,6 +233,14 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
+
+[module/github]
+type = internal/github
+token = ${file:~/.gittoken}
+interval = 60
+empty-notifications = true
+label = GitHub: %notifications%
+format-underline = #339933
 
 [settings]
 screenchange-reload = true
