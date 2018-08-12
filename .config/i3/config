@@ -116,7 +116,8 @@ bindsym $mod+p exec "mate-session-save --logout-dialog"
 bindsym $mod+Shift+p exec "mate-session-save --shutdown-dialog"
 
 exec_always --no-startup-id killall polybar; polybar main
-
+exec_always --no-startup-id killall compton; compton -b
+exec --no-startup-id killall redshift; redshift -x
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

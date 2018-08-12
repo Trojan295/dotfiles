@@ -1,0 +1,12 @@
+.zshrc
+.config/alacritty/alacritty.yml
+.config/dconf/user
+.config/i3/config
+.config/polybar/config
+.config/compton.conf
+.config/redshift.conf
+.fonts.conf
+.fonts
+.config/nvim/init.vim
+.config/nvim/autoload
+.config/nvim/ftplugin
