@@ -6,10 +6,18 @@ save() {
         return 1
     fi
 
-    echo "Saving $1"
-    local dir=$(dirname $1)
-    mkdir -p $dir
-    cp -r "$HOME/$1" "$1"
+    #echo "Saving $1"
+
+    local src="$HOME/$1"
+    local dst_dir=$(dirname $1)
+
+    local dst=$1
+    if [ -d "$src" ]; then
+        dst=$dst_dir
+    fi
+
+    mkdir -p $dst_dir
+    cp -r $src $dst
 }
 
 for f in $(cat files); do
