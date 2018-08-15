@@ -14,6 +14,12 @@ focus_follows_mouse no
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+# create dropdown terminal
+exec --no-startup-id alacritty -t dropdown
+for_window [title="dropdown"] floating enable;
+for_window [title="dropdown"] move scratchpad;
+bindsym $mod+minus scratchpad show
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -112,6 +118,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
+
 bindsym $mod+p exec "mate-session-save --logout-dialog"
 bindsym $mod+Shift+p exec "mate-session-save --shutdown-dialog"
 

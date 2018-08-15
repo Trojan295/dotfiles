@@ -3,9 +3,8 @@
 call plug#begin()
 
 " Visual
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'reedes/vim-colors-pencil'
+Plug 'Yggdroot/indentLine'
 
 " Functional
 Plug 'scrooloose/nerdtree'
@@ -13,6 +12,9 @@ Plug 'Chiel92/vim-autoformat'
 
 " Python
 Plug 'nvie/vim-flake8'
+
+" Typescript
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
