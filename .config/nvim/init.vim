@@ -16,6 +16,9 @@ Plug 'nvie/vim-flake8'
 " Typescript
 Plug 'leafgarland/typescript-vim'
 
+" Vue
+Plug 'posva/vim-vue'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------
