@@ -9,6 +9,7 @@ Plug 'Yggdroot/indentLine'
 " Functional
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
+Plug 'ervandew/supertab'
 
 " Python
 Plug 'nvie/vim-flake8'
@@ -18,6 +19,9 @@ Plug 'leafgarland/typescript-vim'
 
 " Vue
 Plug 'posva/vim-vue'
+
+" Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -53,4 +57,6 @@ au BufWrite * :Autoformat
 set number
 
 let g:autoformat_autoindent=0
+
+let g:go_metalinter_autosave=1
 
