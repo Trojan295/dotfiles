@@ -126,7 +126,7 @@ colors:
   bright:
     black:   '0x10151b'
     red:     '0xd26939'
-    green:   '0x081f2d'
+    green:   '0x185f2d'
     yellow:  '0x245361'
     blue:    '0x396778'
     magenta: '0x888ba5'
