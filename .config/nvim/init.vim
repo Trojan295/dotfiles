@@ -3,7 +3,7 @@
 call plug#begin()
 
 " Visual
-Plug 'reedes/vim-colors-pencil'
+Plug 'whatyouhide/vim-gotham'
 Plug 'Yggdroot/indentLine'
 
 " Functional
@@ -35,12 +35,12 @@ noremap <F2> :NERDTreeFocus<CR>
 
 " ----------------- Visual ------------------
 
-colorscheme pencil
+colorscheme gotham
 set background=dark
 
 highlight LineNr ctermfg=darkgray ctermbg=black
 
-let g:airline_theme = 'pencil'
+let g:airline_theme = 'gotham'
 
 " ----------------- Other -------------------
 

@@ -1,11 +1,14 @@
 [colors]
-background = #222
+background = #0a0f14
 background-alt = #444
-foreground = #dfdfdf
+foreground = #98d1ce
 foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
+primary = #195465
+secondary = #33859d
 alert = #bd2c40
+underline-1 = #d26939
+underline-2 = #081f2d
+underline-3 = #396778
 
 [fonts]
 text = RobotoBold:pixelsize=10;1
@@ -129,7 +132,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = #009900
+format-underline = ${colors.underline-2}
 
 label = %percentage:2%%
 
@@ -138,7 +141,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = #ff9900
+format-underline = ${colors.underline-3}
 
 label = %percentage_used%%
 
@@ -148,7 +151,7 @@ interface = wlp1s0
 interval = 3.0
 
 format-connected = <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.underline-3}
 label-connected = %essid%: %local_ip%   %downspeed%,  %upspeed%
 
 format-disconnected =
@@ -184,7 +187,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
-format-underline = #0a6cf5
+format-underline = ${colors.underline-1}
 
 label = %date% %time%
 
@@ -195,7 +198,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #993399
+format-charging-underline = ${colors.underline-2}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -222,9 +225,9 @@ warn-temperature = 60
 hwmon-path = /sys/class/hwmon/hwmon0/temp1_input
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.underline-1}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-warn-underline = ${colors.underline-1}
 
 label = %temperature%
 label-warn = %temperature%
@@ -241,7 +244,7 @@ token = ${file:~/.gittoken}
 interval = 60
 empty-notifications = true
 label = GitHub: %notifications%
-format-underline = #339933
+format-underline = ${colors.underline-1}
 
 [settings]
 screenchange-reload = true
