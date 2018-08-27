@@ -20,7 +20,11 @@ save() {
     cp -r $src $dst
 }
 
+echo "Saving dotfiles..."
+
 for f in $(cat files); do
     save $f
 done
+
+echo "Done"
 

@@ -5,8 +5,8 @@
 .config/polybar/config
 .config/compton.conf
 .config/redshift.conf
-.fonts.conf
-.fonts
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
+.config/fontconfig
+.fonts
