@@ -9,7 +9,7 @@ Plug 'Yggdroot/indentLine'
 " Functional
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
-Plug 'ervandew/supertab'
+Plug 'lifepillar/vim-mucomplete'
 
 " Python
 Plug 'nvie/vim-flake8'
