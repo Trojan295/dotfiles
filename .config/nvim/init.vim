@@ -23,6 +23,9 @@ Plug 'posva/vim-vue'
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------
