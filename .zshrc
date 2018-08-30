@@ -24,3 +24,4 @@ bindkey "^[[1;5D" backward-word
 
 alias ls='ls --color'
 
+export PATH="$PATH:$HOME/.local/bin"

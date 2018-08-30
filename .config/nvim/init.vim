@@ -26,6 +26,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Elixir
 Plug 'elixir-editors/vim-elixir'
 
+" RobotFramework
+Plug 'mfukar/robotframework-vim'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------

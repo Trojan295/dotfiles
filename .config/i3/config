@@ -5,8 +5,8 @@ font hack:monospace 11
 floating_modifier $mod
 
 # borders
-for_window [class="^.*$"] border pixel 0
-new_window pixel 0
+default_border pixel 0
+default_floating_border pixel 1
 gaps inner 4
 
 focus_follows_mouse no
@@ -14,17 +14,11 @@ focus_follows_mouse no
 # start a terminal
 bindsym $mod+Return exec alacritty
 
-# create dropdown terminal
-exec --no-startup-id alacritty -t dropdown
-for_window [title="dropdown"] floating enable;
-for_window [title="dropdown"] move scratchpad;
-bindsym $mod+minus scratchpad show
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # application menu
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
 bindsym $mod+j focus left
@@ -123,8 +117,11 @@ bindsym $mod+p exec "mate-session-save --logout-dialog"
 bindsym $mod+Shift+p exec "mate-session-save --shutdown-dialog"
 
 exec --no-startup-id polybar main
+exec --no-startup-id polybar add1
+exec --no-startup-id polybar add2
 exec --no-startup-id compton -b
 exec --no-startup-id redshift -x
+exec --no-startup-id $HOME/Tools/decisco/decisco.py -u dczaja -P
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
