@@ -13,6 +13,8 @@ zgen load bhilburn/powerlevel9k powerlevel9k
 
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
+
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
@@ -24,4 +26,4 @@ bindkey "^[[1;5D" backward-word
 
 alias ls='ls --color'
 
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/arm-none-eabi/bin"
