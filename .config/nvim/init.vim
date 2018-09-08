@@ -3,7 +3,7 @@
 call plug#begin()
 
 " Visual
-Plug 'whatyouhide/vim-gotham'
+Plug 'w0ng/vim-hybrid'
 Plug 'Yggdroot/indentLine'
 
 " Functional
@@ -41,12 +41,8 @@ noremap <F2> :NERDTreeFocus<CR>
 
 " ----------------- Visual ------------------
 
-colorscheme gotham
 set background=dark
-
-highlight LineNr ctermfg=darkgray ctermbg=black
-
-let g:airline_theme = 'gotham'
+colorscheme hybrid
 
 " ----------------- Other -------------------
 
