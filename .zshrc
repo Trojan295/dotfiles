@@ -21,6 +21,7 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey "^[[3~" delete-char
 
 alias ls='ls --color'
 
