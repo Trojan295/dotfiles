@@ -11,8 +11,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lifepillar/vim-mucomplete'
 
+" C
+Plug 'Rip-Rip/clang_complete'
+
 " Python
 Plug 'nvie/vim-flake8'
+Plug 'davidhalter/jedi-vim'
 
 " Typescript
 Plug 'leafgarland/typescript-vim'
@@ -22,9 +26,6 @@ Plug 'posva/vim-vue'
 
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" Elixir
-Plug 'elixir-editors/vim-elixir'
 
 " RobotFramework
 Plug 'mfukar/robotframework-vim'

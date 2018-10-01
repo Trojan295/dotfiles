@@ -9,4 +9,3 @@
 .config/nvim/autoload
 .config/nvim/ftplugin
 .config/fontconfig
-.fonts
