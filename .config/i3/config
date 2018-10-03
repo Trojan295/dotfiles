@@ -121,6 +121,7 @@ exec --no-startup-id polybar main
 #exec --no-startup-id polybar add2
 exec --no-startup-id compton -b
 exec --no-startup-id redshift -x
+exec --no-startup-id $HOME/Tools/decisco/decisco.py -u dczaja -P
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
