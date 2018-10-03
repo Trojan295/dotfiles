@@ -24,5 +24,6 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[3~" delete-char
 
 alias ls='ls --color'
+alias clipboard='xclip -selection clipboard'
 
 export PATH="$PATH:$HOME/.local/bin:/opt/arm-none-eabi/bin"
