@@ -3,7 +3,6 @@
 call plug#begin()
 
 " Visual
-" Plug 'w0ng/vim-hybrid'
 Plug 'whatyouhide/vim-gotham'
 Plug 'Yggdroot/indentLine'
 
@@ -43,7 +42,7 @@ noremap <F2> :NERDTreeFocus<CR>
 
 
 " ----------------- Visual ------------------
-
+syntax enable
 set background=dark
 colorscheme gotham
 
