@@ -8,6 +8,7 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'Yggdroot/indentLine'
 
 " Functional
+Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lifepillar/vim-mucomplete'
@@ -55,12 +56,12 @@ set expandtab
 set autoindent
 set smartindent
 
+" Autoformatting
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 au BufWrite * :Autoformat
 
 " Enable line numbers
 set number
-
-let g:autoformat_autoindent=0
-
-let g:go_metalinter_autosave=1
 
