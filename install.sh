@@ -20,6 +20,11 @@ install() {
     cp -r "$src" "$dst"
 }
 
+install_dconf_settings() {
+    echo "Loading dconf settings"
+    dconf load / < dconf-settings.ini
+}
+
 read -p "Are you sure? (y/n)? " choice
 case "$choice" in
   y|Y ) ;;
@@ -32,6 +37,7 @@ echo "Installing dotfiles..."
 for f in $(cat files); do
     install $f
 done
+install_dconf_settings
 
 echo "Done"
 

@@ -1,6 +1,5 @@
 .zshrc
 .config/alacritty/alacritty.yml
-.config/dconf/user
 .config/i3/config
 .config/polybar/config
 .config/compton.conf

@@ -20,11 +20,16 @@ save() {
     cp -r $src $dst
 }
 
+save_dconf_settings() {
+    dconf dump / > dconf-settings.ini
+}
+
 echo "Saving dotfiles..."
 
 for f in $(cat files); do
     save $f
 done
+save_dconf_settings
 
 echo "Done"
 
