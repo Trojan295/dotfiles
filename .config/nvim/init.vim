@@ -3,7 +3,7 @@
 call plug#begin()
 
 " Visual
-Plug 'whatyouhide/vim-gotham'
+Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'Yggdroot/indentLine'
 
 " Functional
@@ -11,6 +11,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'vim-airline/vim-airline'
 
 " C
 Plug 'Rip-Rip/clang_complete'
@@ -44,7 +45,8 @@ noremap <F2> :NERDTreeFocus<CR>
 " ----------------- Visual ------------------
 syntax enable
 set background=dark
-colorscheme gotham
+colorscheme Atelier_LakesideDark
+let g:airline_theme='Atelier_LakesideDark'
 
 " ----------------- Other -------------------
 

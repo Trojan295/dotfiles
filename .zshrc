@@ -39,4 +39,4 @@ alias clipboard='xclip -selection clipboard'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export PATH="$PATH:$HOME/.local/bin:/opt/arm-none-eabi/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/arm-none-eabi/bin:$HOME/.cargo/bin"

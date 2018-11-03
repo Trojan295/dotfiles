@@ -1,14 +1,14 @@
 [colors]
-background = #0a0f14
+background = #161b1d
 background-alt = #444
-foreground = #98d1ce
+foreground = #7ea2b4
 foreground-alt = #555
 primary = #black
 secondary = #green
 alert = #red
-underline-1 = #4e5165
-underline-2 = #33859d
-underline-3 = #98d1ce
+underline-1 = #d22d72
+underline-2 = #568c3b
+underline-3 = #257fad
 
 [fonts]
 text = RobotoBold:pixelsize=11;1
