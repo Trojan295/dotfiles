@@ -7,30 +7,9 @@ Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'Yggdroot/indentLine'
 
 " Functional
-Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'vim-airline/vim-airline'
-
-" C
-Plug 'Rip-Rip/clang_complete'
-
-" Python
-Plug 'nvie/vim-flake8'
-Plug 'davidhalter/jedi-vim'
-
-" Typescript
-Plug 'leafgarland/typescript-vim'
-
-" Vue
-Plug 'posva/vim-vue'
-
-" Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" RobotFramework
-Plug 'mfukar/robotframework-vim'
 
 call plug#end()
 
