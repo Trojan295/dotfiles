@@ -12,8 +12,7 @@ underline-3 = #257fad
 
 [fonts]
 text = RobotoBold:pixelsize=11;1
-icon1 = Font Awesome 5 Free:pixelsize=11;3
-icon2 = Font Awesome 5 Free Solid:pixelsize=11;3
+icon1 = Font Awesome:pixelsize=11;3
 
 [bar/main]
 width = 100%
@@ -23,7 +22,6 @@ monitor = VGA-1
 
 font-0 = ${fonts.text}
 font-1 = ${fonts.icon1}
-font-2 = ${fonts.icon2}
 
 background = ${colors.background}
 foreground = ${colors.foreground}

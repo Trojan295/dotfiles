@@ -50,12 +50,31 @@ EOF
 }
 
 function install_alacritty {
+    if [ ! -f "$HOME/.cargo/bin/cargo" ]; then
+        curl https://sh.rustup.rs -sSf | sh
+    fi
 
+    source $HOME/.cargo/env
+    rustup override set stable
+    rustup update stable
+
+    sudo apt install -y cmake libfontconfig1-dev xclip
+
+    if [ ! -d alacritty ]; then
+        git clone https://github.com/jwilm/alacritty.git
+    fi
+
+    cd alacritty
+    git checkout v0.2.4
+    git pull origin v0.2.4
+
+    cargo install cargo-deb --force
+    cargo deb --install
 }
 
 function install_custom_stuff {
     sudo apt install -y vim zsh git fonts-hack fonts-roboto compton redshift dmenu \
-        papirus-icon-theme fonts-font-awesome dconf-cli
+        papirus-icon-theme fonts-font-awesome dconf-cli nitrogen
     
     if [ ! -d "$HOME/.zgen" ]; then
         git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
@@ -66,7 +85,7 @@ function install_custom_stuff {
     chsh -s /bin/zsh
 }
 
-sudo apt install -y git autoconf
+sudo apt install -y git autoconf curl
 
 mkdir -p "$HOME/customization"
 cd "$HOME/customization"
@@ -80,3 +99,4 @@ install_alacritty
 
 install_firefox
 install_custom_stuff
+
