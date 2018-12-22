@@ -1,43 +1,82 @@
-#!/bin/bash
+#!/bin/bash -e
 
-install() {
-    if [ -z "$1" ]; then
-        echo "Missing path to install"
-        return 1
+function install_i3 {
+    sudo apt install -y libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb \
+        libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev \
+        libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev \
+        libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0-dev
+
+    if [ ! -d i3-gaps ]; then
+        git clone https://www.github.com/Airblader/i3 i3-gaps
     fi
 
-    echo "Installing $1"
+    cd i3-gaps
+    git checkout gaps
+    git pull origin gaps
 
-    local src="$1"
+    autoreconf --force --install
+    rm -rf build/
+    mkdir -p build && cd build/
 
-    local dst="$HOME/$1"
-    local dst_dir=$(dirname $dst)
-    if [ -d "$src" ]; then
-        dst=$dst_dir
+    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
+}
+
+function install_polybar {
+    sudo apt -y install cmake libpulse-dev libnl-genl-3-dev libxcb-ewmh-dev python-xcbgen xcb-proto
+
+    if [ ! -d polybar ]; then
+        git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
     fi
 
-    mkdir -p $dst_dir
-    cp -r "$src" "$dst"
+    rm -rf polybar/build
+    mkdir -p polybar/build
+    cd polybar/build
+    cmake ..
+    make
+    sudo make install
 }
 
-install_dconf_settings() {
-    echo "Loading dconf settings"
-    dconf load / < dconf-settings.ini
+function install_firefox {
+    echo "deb http://http.debian.net/debian unstable main" | sudo tee /etc/apt/sources.list.d/unstable.list
+    echo | sudo tee /etc/apt/preferences << EOF
+Package: *
+Pin: release a=unstable
+Pin-Priority: 1
+EOF
+    sudo apt update
+    sudo apt install -y -t sid firefox
 }
 
-read -p "Are you sure? (y/n)? " choice
-case "$choice" in
-  y|Y ) ;;
-  n|N ) exit 1;;
-  * ) exit 1;;
-esac
+function install_alacritty {
 
-echo "Installing dotfiles..."
+}
 
-for f in $(cat files); do
-    install $f
-done
-install_dconf_settings
+function install_custom_stuff {
+    sudo apt install -y vim zsh git fonts-hack fonts-roboto compton redshift dmenu \
+        papirus-icon-theme fonts-font-awesome dconf-cli
+    
+    if [ ! -d "$HOME/.zgen" ]; then
+        git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+    fi
+    cd $HOME/.zgen
+    git pull origin master
 
-echo "Done"
+    chsh -s /bin/zsh
+}
 
+sudo apt install -y git autoconf
+
+mkdir -p "$HOME/customization"
+cd "$HOME/customization"
+install_i3
+
+cd "$HOME/customization"
+install_polybar
+
+cd "$HOME/customization"
+install_alacritty
+
+install_firefox
+install_custom_stuff

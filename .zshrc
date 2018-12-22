@@ -11,7 +11,6 @@ zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
 
 
-autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
 
@@ -39,4 +38,4 @@ alias clipboard='xclip -selection clipboard'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export PATH="$PATH:$HOME/.local/bin:/opt/arm-none-eabi/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin"

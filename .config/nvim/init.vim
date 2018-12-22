@@ -44,4 +44,3 @@ au BufWrite * :Autoformat
 
 " Enable line numbers
 set number
-
