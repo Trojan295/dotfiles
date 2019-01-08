@@ -10,7 +10,7 @@ zgen load zsh-users/zsh-syntax-highlighting
 zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
 
-
+autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
 

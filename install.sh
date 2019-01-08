@@ -74,7 +74,7 @@ function install_alacritty {
 
 function install_custom_stuff {
     sudo apt install -y vim zsh git fonts-hack fonts-roboto compton redshift dmenu \
-        papirus-icon-theme fonts-font-awesome dconf-cli nitrogen
+        papirus-icon-theme fonts-font-awesome dconf-cli nitrogen lightdm-gtk-greeter-settings
     
     if [ ! -d "$HOME/.zgen" ]; then
         git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
