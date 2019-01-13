@@ -114,9 +114,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+p exec xfce4-session-logout
 
-exec --no-startup-id polybar main
-exec --no-startup-id redshift -x
-exec --no-startup-id nitrogen --restore
+exec redshift -x
+exec nitrogen --restore
+exec launch_polybar.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
