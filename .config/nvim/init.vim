@@ -11,6 +11,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
 
+" Python
+Plug 'Valloric/YouCompleteMe'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------
