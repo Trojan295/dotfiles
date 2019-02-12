@@ -85,7 +85,7 @@ function install_custom_stuff {
     chsh -s /bin/zsh
 }
 
-sudo apt install -y git autoconf curl
+sudo apt install -y git autoconf curl build-essential
 
 mkdir -p "$HOME/customization"
 cd "$HOME/customization"
