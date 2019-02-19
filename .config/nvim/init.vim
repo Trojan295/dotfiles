@@ -1,4 +1,3 @@
-
 " ----------------- Plugins -----------------
 call plug#begin()
 
@@ -10,9 +9,14 @@ Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+Plug 'vim-scripts/AutoClose'
 
 " Python
 Plug 'Valloric/YouCompleteMe'
+
+" Javascript
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -23,14 +27,20 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 noremap <F2> :NERDTreeFocus<CR>
 
-
 " ----------------- Visual ------------------
 syntax enable
 set background=dark
-colorscheme Atelier_LakesideDark
-let g:airline_theme='Atelier_LakesideDark'
+colorscheme Atelier_ForestDark
+let g:airline_theme='Atelier_ForestDark'
+
+" ----------------- ALE ---------------------
+
+let g:ale_open_list = 1
+let g:airline#extensions#ale#enabled = 1
 
 " ----------------- Other -------------------
+
+hi MatchParen cterm=bold ctermbg=gray ctermfg=none
 
 " Whitespace behaviour
 set tabstop=4
