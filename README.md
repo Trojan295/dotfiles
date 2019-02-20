@@ -11,4 +11,3 @@ The repository contains dotfiles for my desktop configuration.
 - GTK Theme: Adapta-Nokto-Eta (https://github.com/adapta-project/adapta-gtk-theme)
 - Icon theme: Papirus Adapta Nokto (https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - Fonts: Roboto + Hack
-
