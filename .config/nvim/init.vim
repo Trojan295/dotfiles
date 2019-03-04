@@ -18,6 +18,9 @@ Plug 'Valloric/YouCompleteMe'
 " Javascript
 Plug 'posva/vim-vue'
 
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------
