@@ -31,6 +31,9 @@ function chpwd() {
     ls --color
 }
 
+# enable kubectl autocompletion
+source <(kubectl completion zsh)
+
 alias ls='ls --color'
 alias clipboard='xclip -selection clipboard'
 

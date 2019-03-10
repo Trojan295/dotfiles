@@ -4,6 +4,7 @@ call plug#begin()
 " Visual
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'Yggdroot/indentLine'
+Plug 'bronson/vim-trailing-whitespace'
 
 " Functional
 Plug 'scrooloose/nerdtree'
