@@ -11,16 +11,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
-Plug 'vim-scripts/AutoClose'
+Plug 'airblade/vim-gitgutter'
 
 " Python
 Plug 'Valloric/YouCompleteMe'
 
 " Javascript
 Plug 'posva/vim-vue'
-
-" Elixir
-Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
@@ -36,6 +33,8 @@ syntax enable
 set background=dark
 colorscheme Atelier_ForestDark
 let g:airline_theme='Atelier_ForestDark'
+
+let g:indentLine_conceallevel = 0
 
 " ----------------- ALE ---------------------
 
@@ -61,3 +60,4 @@ au BufWrite * :Autoformat
 
 " Enable line numbers
 set number
+set conceallevel=0
