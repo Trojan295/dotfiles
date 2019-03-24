@@ -19,6 +19,9 @@ Plug 'Valloric/YouCompleteMe'
 " Javascript
 Plug 'posva/vim-vue'
 
+" Go
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 " ----------------- NERDTree ----------------
@@ -43,7 +46,7 @@ let g:airline#extensions#ale#enabled = 1
 
 " ----------------- Other -------------------
 
-hi MatchParen cterm=bold ctermbg=gray ctermfg=none
+hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
 " Whitespace behaviour
 set tabstop=4

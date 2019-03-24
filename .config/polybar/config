@@ -11,17 +11,21 @@ underline-2 = #568c3b
 underline-3 = #257fad
 
 [fonts]
-text = RobotoBold:pixelsize=11;1
-icon1 = Font Awesome:pixelsize=11;3
+text = Roboto:pixelsize=11:style=Bold
+icon1 = Font Awesome 5 Free
+icon2 = Font Awesome 5 Free:style=Solid
+icon3 = Font Awesome 5 Brands
 
 [bar/main]
 width = 100%
 height = 36
-fixed-center = false
+fixed-center = true
 monitor = ${env:MONITOR}
 
 font-0 = ${fonts.text}
 font-1 = ${fonts.icon1}
+font-2 = ${fonts.icon2}
+font-3 = ${fonts.icon3}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -33,15 +37,16 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 10
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 5
+module-margin-right = 5
 
 modules-left = i3
-modules-right = github filesystem cpu memory temperature battery xkeyboard wlan eth date
+modules-center = date
+modules-right = wlan eth battery pulseaudio
 
-tray-position = right
+tray-position = none
 tray-padding = 2
 
 wm-restack = i3
@@ -49,146 +54,60 @@ wm-restack = i3
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-
-label-layout = %layout%
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted =  %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 2
 
-; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 2
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.underline-2}
+[module/date]
+type = internal/date
+interval = 1
 
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.underline-3}
-
-label = %percentage_used%%
+time = %H : %M
+format =    <label>
+label = %time%
 
 [module/wlan]
 type = internal/network
 interface = ${env:WIFI}
 interval = 3.0
 
-format-connected = <label-connected>
-format-connected-underline = ${colors.underline-3}
-label-connected = %essid%: %local_ip%   %downspeed%,  %upspeed%
-
+format-connected = <ramp-signal>
 format-disconnected =
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 
 [module/eth]
 type = internal/network
 interface = ${env:ETHERNET}
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
+format-connected = 
 format-disconnected =
-
-[module/date]
-type = internal/date
-interval = 1
-
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.underline-1}
-
-label = %date% %time%
 
 [module/battery]
 type = internal/battery
@@ -196,54 +115,32 @@ battery = BAT1
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.underline-2}
+format-charging = <animation-charging>
 
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity>
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-hwmon-path = /sys/class/hwmon/hwmon0/temp1_input
+[module/pulseaudio]
+type = internal/pulseaudio
 
-format = <ramp> <label>
-format-underline = ${colors.underline-1}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.underline-1}
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+format-volume = <ramp-volume>
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+label-muted = 
 
-[module/github]
-type = internal/github
-token = ${file:~/.gittoken}
-interval = 60
-empty-notifications = true
-label = GitHub: %notifications%
-format-underline = ${colors.underline-1}
+interval = 5
 
 [settings]
 screenchange-reload = true
