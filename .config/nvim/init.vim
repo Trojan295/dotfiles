@@ -37,7 +37,7 @@ set background=dark
 colorscheme Atelier_ForestDark
 let g:airline_theme='Atelier_ForestDark'
 
-let g:indentLine_conceallevel = 0
+let g:indentLine_conceallevel = 1
 
 " ----------------- ALE ---------------------
 
@@ -58,7 +58,7 @@ set smartindent
 " Autoformatting
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
+let g:autoformat_remove_trailing_spaces = 1
 au BufWrite * :Autoformat
 
 " Enable line numbers
