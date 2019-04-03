@@ -38,11 +38,14 @@ colorscheme Atelier_ForestDark
 let g:airline_theme='Atelier_ForestDark'
 
 let g:indentLine_conceallevel = 1
+let g:ycm_min_num_of_chars_for_completion = 2
 
 " ----------------- ALE ---------------------
 
-let g:ale_open_list = 1
 let g:airline#extensions#ale#enabled = 1
+let g:ale_open_list = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 " ----------------- Other -------------------
 
@@ -63,4 +66,3 @@ au BufWrite * :Autoformat
 
 " Enable line numbers
 set number
-set conceallevel=0
