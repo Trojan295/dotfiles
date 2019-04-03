@@ -31,6 +31,8 @@ function chpwd() {
     ls --color
 }
 
+export PYTHONDONTWRITEBYTECODE=1
+
 # enable kubectl autocompletion
 source <(kubectl completion zsh)
 
@@ -41,8 +43,9 @@ alias clipboard='xclip -selection clipboard'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export PATH="$PATH:$HOME/.local/bin"
 
-export PATH="/home/damian/.pyenv/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
