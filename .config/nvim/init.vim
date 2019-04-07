@@ -2,7 +2,7 @@
 call plug#begin()
 
 " Visual
-Plug 'atelierbram/vim-colors_atelier-schemes'
+Plug 'dracula/vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 
@@ -34,8 +34,7 @@ noremap <F2> :NERDTreeFocus<CR>
 " ----------------- Visual ------------------
 syntax enable
 set background=dark
-colorscheme Atelier_ForestDark
-let g:airline_theme='Atelier_ForestDark'
+colorscheme dracula
 
 let g:indentLine_conceallevel = 1
 let g:ycm_min_num_of_chars_for_completion = 2

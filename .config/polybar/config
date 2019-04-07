@@ -1,14 +1,9 @@
 [colors]
-background = #161b1d
-background-alt = #444
-foreground = #7ea2b4
-foreground-alt = #555
-primary = #black
-secondary = #green
-alert = #red
-underline-1 = #d22d72
-underline-2 = #568c3b
-underline-3 = #257fad
+background = #b0282a36
+background-alt = #00000000
+focus = #5af78e
+foreground = #f8f8f2
+alert = #ff5555
 
 [fonts]
 text = Roboto:pixelsize=11:style=Bold
@@ -63,6 +58,7 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-focused = %index%
+label-focused-foreground = ${colors.focus}
 label-focused-background = ${colors.background-alt}
 label-focused-padding = 2
 

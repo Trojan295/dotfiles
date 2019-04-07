@@ -117,6 +117,15 @@ bindsym $mod+Shift+p exec xfce4-session-logout
 exec redshift -x
 exec nitrogen --restore
 exec launch_polybar.sh
+exec compton
+
+
+# --------PROGRAM ASSIGNMENTS--------
+
+for_window [class="^Spotify$"] move to workspace 10
+
+# -----------------------------------
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
