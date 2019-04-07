@@ -6,7 +6,7 @@ foreground = #f8f8f2
 alert = #ff5555
 
 [fonts]
-text = Roboto:pixelsize=11:style=Bold
+text = "Fire code:pixelsize=12:style=Bold"
 icon1 = Font Awesome 5 Free
 icon2 = Font Awesome 5 Free:style=Solid
 icon3 = Font Awesome 5 Brands

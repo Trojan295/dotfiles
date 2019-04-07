@@ -3,7 +3,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
-
 source "${HOME}/.zgen/zgen.zsh"
 
 zgen load zsh-users/zsh-syntax-highlighting

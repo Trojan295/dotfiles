@@ -18,7 +18,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # application menu
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Fira Code'
 
 # change focus
 bindsym $mod+j focus left
@@ -117,7 +117,7 @@ bindsym $mod+Shift+p exec xfce4-session-logout
 exec redshift -x
 exec nitrogen --restore
 exec launch_polybar.sh
-exec compton
+exec xcompmgr
 
 
 # --------PROGRAM ASSIGNMENTS--------
