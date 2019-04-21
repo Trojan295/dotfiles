@@ -24,6 +24,14 @@ Plug 'fatih/vim-go'
 
 call plug#end()
 
+" ----------------- Basic -------------------
+set nocompatible
+filetype plugin on
+
+" Fuzzy file find
+set path+=**
+set wildmenu
+
 " ----------------- NERDTree ----------------
 
 autocmd StdinReadPre * let s:std_in=1

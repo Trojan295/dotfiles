@@ -3,7 +3,6 @@
 .config/alacritty/alacritty.yml
 .config/i3/config
 .config/polybar/config
-.config/compton.conf
 .config/redshift.conf
 .config/nvim/init.vim
 .config/nvim/autoload
