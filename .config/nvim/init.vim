@@ -58,6 +58,8 @@ let g:ale_set_quickfix = 1
 
 hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 " Whitespace behaviour
 set tabstop=4
 set shiftwidth=4

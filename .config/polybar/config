@@ -9,7 +9,7 @@ grey = #5b5b5b
 
 foreground = ${colors.white}
 background = ${colors.black}
-background-alt = #00000000
+background-alt = ${colors.black}
 focus = ${colors.violet}
 alert = #ff5555
 
@@ -86,7 +86,7 @@ content-foreground = ${colors.arrow1}
 [module/wlan]
 type = internal/network
 interface = ${env:WIFI}
-interval = 3.0
+interval = 1.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-background = ${colors.arrow1}
@@ -106,7 +106,7 @@ ramp-signal-4 = 
 [module/eth]
 type = internal/network
 interface = ${env:ETHERNET}
-interval = 3.0
+interval = 1.0
 
 format-connected-padding = 2
 format-connected =   <label-connected>
