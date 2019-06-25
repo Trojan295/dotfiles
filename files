@@ -9,3 +9,4 @@
 .config/nvim/ftplugin
 .config/fontconfig
 .local/bin/launch_polybar.sh
+.config/VSCodium/User/settings.json

@@ -44,7 +44,8 @@ export EDITOR=$VISUAL
 
 
 export PATH="$HOME/.local/bin:$PATH"
-
 export PATH="$HOME/.pyenv/bin:$PATH"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

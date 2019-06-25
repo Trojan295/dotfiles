@@ -13,15 +13,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 
-" Python
-Plug 'Valloric/YouCompleteMe'
-
-" Javascript
-Plug 'posva/vim-vue'
-
-" Go
-Plug 'fatih/vim-go'
-
 call plug#end()
 
 " ----------------- Basic -------------------
