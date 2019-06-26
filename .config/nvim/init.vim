@@ -12,6 +12,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
+Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
 
@@ -33,7 +34,10 @@ noremap <F2> :NERDTreeFocus<CR>
 " ----------------- Visual ------------------
 syntax enable
 set background=dark
-colorscheme dracula
+colorscheme space-vim-dark
+
+let g:space_vim_dark_background = 233
+color space-vim-dark
 
 let g:indentLine_conceallevel = 1
 let g:ycm_min_num_of_chars_for_completion = 2

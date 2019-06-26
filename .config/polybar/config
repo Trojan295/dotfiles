@@ -1,11 +1,12 @@
 [colors]
-black = #282a36
+black = #1a1a1a
 white = #f8f8f8
-red = #e06c75
-green = #8ecc47
-blue = #3881c1
+red = #ff4da6
+green = #66ff33
+blue = #00ccff
 violet = #b759b7
-grey = #5b5b5b
+grey = #b3b3b3
+transparent = #00000000
 
 foreground = ${colors.white}
 background = ${colors.black}
@@ -13,10 +14,12 @@ background-alt = ${colors.black}
 focus = ${colors.violet}
 alert = #ff5555
 
+arrowLeft = ${colors.black}
+
 arrow1 = ${colors.red}
 arrow2 = ${colors.green}
-arrow3 = ${colors.grey}
-arrow4 = ${colors.blue}
+arrow3 = ${colors.blue}
+arrow4 = ${colors.violet}
 
 [bar/main]
 width = 100%
@@ -25,12 +28,12 @@ fixed-center = true
 monitor = ${env:MONITOR}
 
 font-0 = PowerlineSymbols:size=22;5
-font-1 = Fire code:pixelsize=12:style=Bold;2
-font-2 = Font Awesome 5 Free:silabel-focused-underline = #fba922ze=11;2
+font-1 = NotoSansMono:pixelsize=12:style=Bold;2
+font-2 = Font Awesome 5 Free:size=11;0
 font-3 = Font Awesome 5 Free:style=Solid:size=11;2
 font-4 = Font Awesome 5 Brands:size=11;2
 
-background = ${colors.background}
+background = ${colors.transparent}
 foreground = ${colors.foreground}
 
 line-size = 3
@@ -42,11 +45,11 @@ border-color = #00000000
 padding-left = 0
 padding-right = 0
 bel-focused-underline = #fba922
-modules-left = i3
+modules-left = i3 arrowLeft
 modules-right = arrow1 wlan eth arrow2 battery arrow3 pulseaudio arrow4 date
 
 tray-position = none
-tray-padding = 2
+tray-padding = 1
 
 wm-restack = i3
 
@@ -60,27 +63,36 @@ pin-workspaces = true
 format = <label-state> <label-mode>
 
 label-focused = %index%
-label-focused-padding = 2
+label-focused-padding = 1
 label-focused-underline = ${colors.focus}
+label-focused-background = ${colors.background}
 
 label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.background}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${colors.background-alt}
-label-visible-padding = 2
+label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
+
+[module/arrowLeft]
+type = custom/text
+content = "%{T1}"
+content-font = 2
+content-background = ${colors.transparent}
+content-foreground = ${colors.arrowLeft}
 
 [module/arrow1]
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T6} %{T-}"
 content-font = 2
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 content-foreground = ${colors.arrow1}
 
 [module/wlan]
@@ -91,7 +103,7 @@ interval = 1.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-background = ${colors.arrow1}
 format-connected-foreground = ${colors.background}
-format-connected-padding = 2
+format-connected-padding = 1
 
 label-connected =  %downspeed%  %upspeed%
 
@@ -108,7 +120,7 @@ type = internal/network
 interface = ${env:ETHERNET}
 interval = 1.0
 
-format-connected-padding = 2
+format-connected-padding = 1
 format-connected =   <label-connected>
 format-connected-background = ${colors.arrow1}
 format-connected-foreground = ${colors.background}
@@ -118,7 +130,7 @@ format-disconnected =
 
 [module/arrow2]
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T6} %{T-}"
 content-font = 2
 content-background = ${colors.arrow1}
 content-foreground = ${colors.arrow2}
@@ -131,12 +143,12 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 format-charging-background = ${colors.arrow2}
-format-charging-padding = 2
+format-charging-padding = 1
 format-charging-foreground = ${colors.background}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-background = ${colors.arrow2}
-format-discharging-padding = 2
+format-discharging-padding = 1
 format-discharging-foreground = ${colors.background}
 
 ramp-capacity-0 = 
@@ -150,7 +162,7 @@ animation-charging-framerate = 750
 
 [module/arrow3]
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T6} %{T-}"
 content-font = 2
 content-background = ${colors.arrow2}
 content-foreground = ${colors.arrow3}
@@ -161,8 +173,9 @@ type = internal/pulseaudio
 sink = alsa_output.pci-0000_12_00.3.analog-stereo
 
 format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.background}
 format-volume-background = ${colors.arrow3}
-format-volume-padding = 2
+format-volume-padding = 1
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -173,7 +186,7 @@ interval = 5
 
 [module/arrow4]
 type = custom/text
-content = "%{T2} %{T-}"
+content = "%{T6} %{T-}"
 content-font = 2
 content-background = ${colors.arrow3}
 content-foreground = ${colors.arrow4}
@@ -186,8 +199,10 @@ date = " %a %b %d, %Y"
 time = %l:%M%p
 
 format-prefix = 
+format-foreground = ${colors.background}
 format-background = ${colors.arrow4}
-format-padding = 2
+format-padding = 1
+
 label = %date% %time%
 
 [settings]
