@@ -16,6 +16,7 @@ alert = #ff5555
 
 arrowLeft = ${colors.black}
 
+arrow0 = ${colors.black}
 arrow1 = ${colors.red}
 arrow2 = ${colors.green}
 arrow3 = ${colors.blue}
@@ -28,7 +29,7 @@ fixed-center = true
 monitor = ${env:MONITOR}
 
 font-0 = PowerlineSymbols:size=22;5
-font-1 = NotoSansMono:pixelsize=12:style=Bold;2
+font-1 = mononoki:pixelsize=12:style=Bold;2
 font-2 = Font Awesome 5 Free:size=11;0
 font-3 = Font Awesome 5 Free:style=Solid:size=11;2
 font-4 = Font Awesome 5 Brands:size=11;2
@@ -46,7 +47,7 @@ padding-left = 0
 padding-right = 0
 bel-focused-underline = #fba922
 modules-left = i3 arrowLeft
-modules-right = arrow1 wlan eth arrow2 battery arrow3 pulseaudio arrow4 date
+modules-right = arrow0 spotify arrow1 wlan eth arrow2 battery arrow3 pulseaudio arrow4 date
 
 tray-position = none
 tray-padding = 1
@@ -88,11 +89,26 @@ content-font = 2
 content-background = ${colors.transparent}
 content-foreground = ${colors.arrowLeft}
 
-[module/arrow1]
+[module/arrow0]
 type = custom/text
 content = "%{T6} %{T-}"
 content-font = 2
 content-background = ${colors.transparent}
+content-foreground = ${colors.arrow0}
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+format-background = ${colors.black}
+exec = $HOME/.local/bin/spotify_status.py
+
+[module/arrow1]
+type = custom/text
+content = "%{T6} %{T-}"
+content-font = 2
+content-background = ${colors.arrow0}
 content-foreground = ${colors.arrow1}
 
 [module/wlan]
@@ -130,7 +146,7 @@ format-disconnected =
 
 [module/arrow2]
 type = custom/text
-content = "%{T6} %{T-}"
+content = "%{T1} %{T-}"
 content-font = 2
 content-background = ${colors.arrow1}
 content-foreground = ${colors.arrow2}
