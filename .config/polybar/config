@@ -29,10 +29,8 @@ fixed-center = true
 monitor = ${env:MONITOR}
 
 font-0 = PowerlineSymbols:size=22;5
-font-1 = mononoki:pixelsize=12:style=Bold;2
-font-2 = Font Awesome 5 Free:size=11;0
-font-3 = Font Awesome 5 Free:style=Solid:size=11;2
-font-4 = Font Awesome 5 Brands:size=11;2
+font-1 = Inconsolata:pixelsize=12:style=Bold;2
+font-2 = FontAwesome:size=11;0
 
 background = ${colors.transparent}
 foreground = ${colors.foreground}

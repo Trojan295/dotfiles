@@ -18,7 +18,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # application menu
-bindsym $mod+d exec --no-startup-id dmenu_run -nb '#1a1a1a' -sb '#ffff00' -sf '#1a1a1a' -fn 'mononoki:style=Bold:pixelsize=20'
+bindsym $mod+d exec --no-startup-id dmenu_run -nb '#1a1a1a' -sb '#ffff00' -sf '#1a1a1a' -fn 'inconsolata:pixelsize=20'
 
 # change focus
 bindsym $mod+j focus left

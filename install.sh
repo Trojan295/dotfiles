@@ -27,15 +27,20 @@ function install_i3 {
 
 function install_polybar {
     local BRANCH=$1
-    sudo apt -y install cmake libpulse-dev libnl-genl-3-dev libxcb-ewmh-dev python-xcbgen xcb-proto
+    sudo apt -y install cmake libpulse-dev libnl-genl-3-dev libxcb-ewmh-dev python-xcbgen xcb-proto libxcb-composite0-dev
 
     if [ ! -d polybar ]; then
-        git clone --branch $BRANCH --recursive https://github.com/jaagr/polybar
+        git clone --recursive https://github.com/jaagr/polybar
     fi
 
-    rm -rf polybar/build
-    mkdir -p polybar/build
-    cd polybar/build
+    cd polybar
+
+    git checkout $BRANCH
+    git pull origin $BRANCH
+
+    rm -rf build
+    mkdir -p build
+    cd build
     cmake ..
     make -j4
     sudo make install
@@ -54,13 +59,13 @@ EOF
 
 function install_alacritty {
     local VERSION=$1
-    curl -L --output alacritty.deb https://github.com/jwilm/alacritty/releases/download/$VERSION/Alacritty-${VERSION}_amd64.deb
+    curl -L --output alacritty.deb https://github.com/jwilm/alacritty/releases/download/$VERSION/Alacritty-$VERSION-ubuntu_18_04_amd64.deb
     sudo dpkg -i alacritty.deb
     rm alacritty.deb
 }
 
 function install_custom_stuff {
-    sudo apt install -y vim zsh git fonts-hack fonts-roboto compton redshift dmenu \
+    sudo apt install -y vim zsh git fonts-font-awesome fonts-powerline compton redshift dmenu \
         papirus-icon-theme dconf-cli nitrogen lightdm-gtk-greeter-settings
 
     if [ ! -d "$HOME/.zgen" ]; then
@@ -79,10 +84,10 @@ cd "$HOME/customization"
 install_i3 gaps
 
 cd "$HOME/customization"
-install_polybar "3.3.0"
+install_polybar "3.3.1"
 
 cd "$HOME/customization"
-install_alacritty "v0.2.9"
+install_alacritty "v0.3.3"
 
 install_firefox
 install_custom_stuff
