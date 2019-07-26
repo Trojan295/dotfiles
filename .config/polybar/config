@@ -100,6 +100,7 @@ interval = 1
 format-prefix = " "
 format = <label>
 format-background = ${colors.black}
+exec-if = ls $HOME/.local/bin/spotify_status.py
 exec = $HOME/.local/bin/spotify_status.py
 
 [module/arrow1]
