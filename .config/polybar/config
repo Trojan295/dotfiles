@@ -30,7 +30,7 @@ monitor = ${env:MONITOR}
 
 font-0 = PowerlineSymbols:size=22;5
 font-1 = Inconsolata:pixelsize=12:style=Bold;2
-font-2 = FontAwesome:size=11;0
+font-2 = FontAwesome:size=11;2
 
 background = ${colors.transparent}
 foreground = ${colors.foreground}
@@ -45,7 +45,7 @@ padding-left = 0
 padding-right = 0
 bel-focused-underline = #fba922
 modules-left = i3 arrowLeft
-modules-right = arrow0 spotify arrow1 wlan eth arrow2 battery arrow3 pulseaudio arrow4 date
+modules-right = arrow0 spotify arrow1 wlan eth arrow2 cpu memory battery arrow3 pulseaudio arrow4 date
 
 tray-position = none
 tray-padding = 1
@@ -120,7 +120,7 @@ format-connected-background = ${colors.arrow1}
 format-connected-foreground = ${colors.background}
 format-connected-padding = 1
 
-label-connected =  %downspeed%  %upspeed%
+label-connected = %local_ip%  %downspeed%  %upspeed%
 
 format-disconnected =
 
@@ -139,7 +139,7 @@ format-connected-padding = 1
 format-connected =   <label-connected>
 format-connected-background = ${colors.arrow1}
 format-connected-foreground = ${colors.background}
-label-connected =  %downspeed%  %upspeed%
+label-connected = %local_ip%  %downspeed%  %upspeed%
 
 format-disconnected =
 
@@ -150,20 +150,40 @@ content-font = 2
 content-background = ${colors.arrow1}
 content-foreground = ${colors.arrow2}
 
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = ""
+format-padding = 1
+format-background = ${colors.arrow2}
+format-foreground = ${colors.background}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-padding = 1
+format-foreground = ${colors.background}
+format-background = ${colors.arrow2}
+label = %percentage_used%%
+
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = AC
 full-at = 98
 
+format-full-prefix = " "
+format-full-background = ${colors.arrow2}
+format-full-foreground = ${colors.background}
+
 format-charging = <animation-charging> <label-charging>
 format-charging-background = ${colors.arrow2}
-format-charging-padding = 1
 format-charging-foreground = ${colors.background}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-background = ${colors.arrow2}
-format-discharging-padding = 1
 format-discharging-foreground = ${colors.background}
 
 ramp-capacity-0 = 

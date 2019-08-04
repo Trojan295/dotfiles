@@ -11,18 +11,19 @@ zgen load bhilburn/powerlevel9k powerlevel9k
 
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
 
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
-
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey "^[[3~" delete-char
 
 # execute after changing PWD
 function chpwd() {
@@ -40,4 +41,8 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+
+#AWSume alias to source the AWSume script
+alias awsume=". awsume"
+fpath=(/usr/local/share/zsh/site-functions $fpath)

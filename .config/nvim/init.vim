@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
