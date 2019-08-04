@@ -12,7 +12,7 @@ gaps inner 4
 focus_follows_mouse no
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
