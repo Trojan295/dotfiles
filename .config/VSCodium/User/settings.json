@@ -2,7 +2,6 @@
     "editor.fontFamily": "'Fira Code'",
     "window.zoomLevel": 0,
     "editor.formatOnSave": true,
-    "eslint.autoFixOnSave": true,
     "vetur.format.defaultFormatter.js": "vscode-typescript",
     "vetur.format.defaultFormatter.html": "js-beautify-html",
     "eslint.validate": [
@@ -31,5 +30,7 @@
         "exclude": [
             "**/*"
         ]
-    }
+    },
+    "vetur.format.enable": false,
+    "eslint.autoFixOnSave": true
 }

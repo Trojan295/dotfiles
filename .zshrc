@@ -4,18 +4,20 @@ SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
 source "${HOME}/.zgen/zgen.zsh"
+autoload -U compinit && compinit
 
 zgen load zsh-users/zsh-syntax-highlighting
 zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
+zgen load mdumitru/git-aliases
 
-autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 
 zstyle ':completion:*' matcher-list '' \
   'm:{a-z\-}={A-Z\_}' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
+
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
@@ -41,7 +43,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 
 
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 #AWSume alias to source the AWSume script
 alias awsume=". awsume"
