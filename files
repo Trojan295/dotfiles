@@ -1,6 +1,7 @@
 .zshrc
 .xsessionrc
 .config/alacritty/alacritty.yml
+.config/termite/config
 .config/i3/config
 .config/polybar/config
 .config/redshift.conf

@@ -12,7 +12,7 @@ gaps inner 4
 focus_follows_mouse no
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
