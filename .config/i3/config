@@ -120,6 +120,8 @@ for_window [class="^Spotify$"] move to workspace 10
 
 # -----------------------------------
 
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id launch_polybar.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
