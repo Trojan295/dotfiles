@@ -120,8 +120,9 @@ for_window [class="^Spotify$"] move to workspace 10
 
 # -----------------------------------
 
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id launch_polybar.sh
+exec_always --no-startup-id launch_polybar.sh
+exec_always --no-startup-id nitrogen --set-auto $HOME/.local/share/wallpapers/$(xdpyinfo | awk '/dimensions/{print $2}').jpg
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

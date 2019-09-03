@@ -11,4 +11,5 @@
 .config/fontconfig
 .local/bin/launch_polybar.sh
 .local/bin/configure_multihead.sh
+.local/share/wallpapers/3440x1440.jpg
 .config/VSCodium/User/settings.json
