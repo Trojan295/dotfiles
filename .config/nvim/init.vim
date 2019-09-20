@@ -17,6 +17,7 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'ycm-core/YouCompleteMe'
 
 Plug 'hashivim/vim-terraform'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 call plug#end()
 
