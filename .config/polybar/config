@@ -16,7 +16,7 @@ border-size = 7
 border-color = ${colors.bg}
 
 modules-left = i3
-modules-right = spotify separator wlan_i wlan separator eth_i eth separator cpu_i cpu separator memory_i memory separator battery_i battery separator pulseaudio_i pulseaudio separator date_i date
+modules-right = spotify_i spotify separator wlan_i wlan separator eth_i eth separator cpu_i cpu separator memory_i memory separator battery_i battery separator pulseaudio_i pulseaudio separator date_i date
 
 module-margin-left = 0
 module-margin-right = 0
@@ -60,12 +60,20 @@ label-urgent = %index%
 label-urgent-background = ${colors.acc}
 label-urgent-padding = 1
 
+[module/spotify_i]
+type = custom/text
+content-foreground = ${colors.fg}
+content-background = ${colors.orange}
+content-padding = 1
+content = ""
+
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
 format = <label>
-format-background = ${colors.black}
+format-padding = 1
+format-foreground = ${colors.fg}
+format-background = ${colors.mbg}
 exec-if = ls $HOME/.local/bin/spotify_status.py
 exec = $HOME/.local/bin/spotify_status.py
 

@@ -11,6 +11,7 @@
 .config/fontconfig
 .local/bin/launch_polybar.sh
 .local/bin/configure_multihead.sh
+.local/bin/spotify_status.py
 .local/share/wallpapers
 .local/share/fonts
 .config/VSCodium/User/settings.json
