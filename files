@@ -3,7 +3,7 @@
 .config/alacritty/alacritty.yml
 .config/termite/config
 .config/i3/config
-.config/polybar/config
+.config/polybar
 .config/redshift.conf
 .config/nvim/init.vim
 .config/nvim/autoload
@@ -11,7 +11,6 @@
 .config/fontconfig
 .local/bin/launch_polybar.sh
 .local/bin/configure_multihead.sh
-.local/share/wallpapers/3440x1440.jpg
-.local/share/wallpapers/3840x1080.jpg
-.local/share/wallpapers/1920x1080.jpg
+.local/share/wallpapers
+.local/share/fonts
 .config/VSCodium/User/settings.json

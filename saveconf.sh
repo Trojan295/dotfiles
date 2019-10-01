@@ -6,7 +6,7 @@ save() {
         return 1
     fi
 
-    #echo "Saving $1"
+    echo "Saving $1"
 
     local src="$HOME/$1"
     local dst_dir=$(dirname $1)
