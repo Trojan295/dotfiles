@@ -170,7 +170,7 @@ label = %percentage_used%%
 
 [module/battery]
 type = internal/battery
-battery = BAT0
+battery = ${env:BATTERY}
 adapter = AC
 full-at = 98
 
