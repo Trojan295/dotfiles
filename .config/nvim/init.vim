@@ -18,6 +18,7 @@ Plug 'ycm-core/YouCompleteMe'
 
 Plug 'hashivim/vim-terraform'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
