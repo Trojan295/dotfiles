@@ -2,9 +2,6 @@
 call plug#begin()
 
 " Visual
-Plug 'dracula/vim'
-Plug 'Yggdroot/indentLine'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 
 " Functional
@@ -12,12 +9,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
+Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'bronson/vim-trailing-whitespace'
 
+" Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Terraform
 Plug 'hashivim/vim-terraform'
+
+" Jinja2
 Plug 'Glench/Vim-Jinja2-Syntax'
+
+" Vue
 Plug 'posva/vim-vue'
 
 call plug#end()
