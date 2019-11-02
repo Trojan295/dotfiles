@@ -8,14 +8,11 @@ Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'bronson/vim-trailing-whitespace'
-
-" Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Terraform
 Plug 'hashivim/vim-terraform'
@@ -56,7 +53,7 @@ let g:ycm_min_num_of_chars_for_completion = 2
 
 let g:airline#extensions#ale#enabled = 1
 let g:ale_open_list = 1
-let g:ale_set_loclist = 0
+let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
 
 " ----------------- Other -------------------

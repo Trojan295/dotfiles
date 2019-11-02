@@ -42,7 +42,6 @@ alias clipboard='xclip -selection clipboard'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-
 export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin"
 
 #AWSume alias to source the AWSume script
