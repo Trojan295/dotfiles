@@ -6,10 +6,14 @@ setopt INC_APPEND_HISTORY
 source "${HOME}/.zgen/zgen.zsh"
 autoload -U compinit && compinit
 
+export ZSH_CACHE_DIR=/tmp
+
 zgen load zsh-users/zsh-syntax-highlighting
 zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
 zgen load mdumitru/git-aliases
+zgen load robbyrussell/oh-my-zsh plugins/kubectl/kubectl.plugin.zsh
+zgen load zsh-users/zsh-autosuggestions
 
 zstyle ':completion:*' menu select
 

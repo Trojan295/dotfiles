@@ -1,1 +1,1 @@
-let b:ale_linters = ['gofmt', 'govet', 'staticcheck', 'gotype', 'gosimple']
+let b:ale_linters = ['gofmt', 'govet']
