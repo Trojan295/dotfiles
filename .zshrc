@@ -12,8 +12,9 @@ zgen load zsh-users/zsh-syntax-highlighting
 zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
 zgen load mdumitru/git-aliases
-zgen load robbyrussell/oh-my-zsh plugins/kubectl/kubectl.plugin.zsh
 zgen load zsh-users/zsh-autosuggestions
+zgen load ohmyzsh/ohmyzsh plugins/kubectl/kubectl.plugin.zsh
+zgen load ohmyzsh/ohmyzsh plugins/debian/debian.plugin.zsh
 
 zstyle ':completion:*' menu select
 
@@ -45,7 +46,7 @@ alias clipboard='xclip -selection clipboard'
 
 export VISUAL=vim
 export EDITOR=$VISUAL
-
+export GOROOT="/usr/lib/go-1.13"
 export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin"
 
 #AWSume alias to source the AWSume script
