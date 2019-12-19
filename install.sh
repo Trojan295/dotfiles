@@ -65,7 +65,7 @@ function install_alacritty {
 }
 
 function install_custom_stuff {
-    sudo apt install -y vim zsh git fonts-font-awesome fonts-powerline compton redshift dmenu \
+    sudo apt install -y vim zsh git fonts-hack fonts-font-awesome fonts-powerline compton redshift rofi \
         papirus-icon-theme dconf-cli nitrogen lightdm-gtk-greeter-settings
 
     if [ ! -d "$HOME/.zgen" ]; then
