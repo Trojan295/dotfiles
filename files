@@ -1,16 +1,7 @@
 .zshrc
 .xsessionrc
 .config/alacritty/alacritty.yml
-.config/termite/config
-.config/i3/config
-.config/polybar
 .config/redshift.conf
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
-.config/fontconfig
-.local/bin/launch_polybar.sh
-.local/bin/configure_multihead.sh
-.local/bin/spotify_status.py
-.local/share/wallpapers
-.local/share/fonts
