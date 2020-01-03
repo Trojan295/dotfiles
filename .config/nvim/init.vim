@@ -11,17 +11,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
-Plug 'ycm-core/YouCompleteMe'
 Plug 'bronson/vim-trailing-whitespace'
-
-" Terraform
-Plug 'hashivim/vim-terraform'
-
-" Jinja2
-Plug 'Glench/Vim-Jinja2-Syntax'
-
-" Vue
-Plug 'posva/vim-vue'
 
 call plug#end()
 
