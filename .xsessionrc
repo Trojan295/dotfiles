@@ -1,4 +1,8 @@
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "/usr/lib/go-1.13/bin" ]; then
+    PATH="/usr/lib/go-1.13/bin:$PATH"
 fi
 
