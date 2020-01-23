@@ -6,5 +6,6 @@
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
+.config/VSCodium/User/settings.json
 .local/bin/launch-polybar.sh
 .local/bin/spotify-status.py
