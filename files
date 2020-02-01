@@ -2,7 +2,7 @@
 .xsessionrc
 .config/i3
 .config/polybar
-.config/alacritty/alacritty.yml
+.config/termite
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
