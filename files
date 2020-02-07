@@ -9,3 +9,4 @@
 .config/VSCodium/User/settings.json
 .local/bin/launch-polybar.sh
 .local/bin/spotify-status.py
+.local/share/wallpapers
