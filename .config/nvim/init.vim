@@ -3,6 +3,7 @@ call plug#begin()
 
 " Visual
 Plug 'tomasr/molokai'
+Plug 'jvirtanen/vim-hcl'
 
 " Functional
 Plug 'scrooloose/nerdtree'
@@ -37,9 +38,11 @@ noremap <F2> :NERDTreeFocus<CR>
 
 " ----------------- Visual ------------------
 syntax enable
+
 set background=dark
 colorscheme molokai
-let g:airline_theme='Atelier_LakesideDark'
+
+"let g:airline_theme='Atelier_LakesideDark'
 
 let g:indentLine_conceallevel = 1
 let g:ycm_min_num_of_chars_for_completion = 2
