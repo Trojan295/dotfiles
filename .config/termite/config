@@ -1,44 +1,45 @@
 [options]
+
 font = Noto Mono for Powerline 12
+
 
 [colors]
 
 # special
-foreground      = #7ea2b4
-foreground_bold = #7ea2b4
-cursor          = #7ea2b4
-#background      = #161b1d
-background      = rgba(22, 27, 29, 0.9)
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #272822
 
 # black
-color0  = #161b1d
-color8  = #5a7b8c
+color0  = #272822
+color8  = #75715e
 
 # red
-color1  = #d22d72
-color9  = #d22d72
+color1  = #f92672
+color9  = #f92672
 
 # green
-color2  = #568c3b
-color10 = #568c3b
+color2  = #a6e22e
+color10 = #a6e22e
 
 # yellow
-color3  = #8a8a0f
-color11 = #8a8a0f
+color3  = #f4bf75
+color11 = #f4bf75
 
 # blue
-color4  = #257fad
-color12 = #257fad
+color4  = #66d9ef
+color12 = #66d9ef
 
 # magenta
-color5  = #5d5db1
-color13 = #5d5db1
+color5  = #ae81ff
+color13 = #ae81ff
 
 # cyan
-color6  = #2d8f6f
-color14 = #2d8f6f
+color6  = #a1efe4
+color14 = #a1efe4
 
 # white
-color7  = #7ea2b4
-color15 = #ebf8ff
+color7  = #f8f8f2
+color15 = #f9f8f5
 

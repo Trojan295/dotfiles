@@ -39,7 +39,7 @@ function chpwd() {
 }
 
 export PYTHONDONTWRITEBYTECODE=1
-export TERM=xterm
+export TERM=xterm-256color
 
 alias ls='ls --color'
 alias clipboard='xclip -selection clipboard'

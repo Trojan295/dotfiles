@@ -8,5 +8,6 @@
 .config/nvim/ftplugin
 .config/VSCodium/User/settings.json
 .local/bin/launch-polybar.sh
+.local/bin/set-wallpaper.sh
 .local/bin/spotify-status.py
 .local/share/wallpapers

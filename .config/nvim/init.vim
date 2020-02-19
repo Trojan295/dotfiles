@@ -2,7 +2,7 @@
 call plug#begin()
 
 " Visual
-Plug 'atelierbram/vim-colors_atelier-schemes'
+Plug 'tomasr/molokai'
 
 " Functional
 Plug 'scrooloose/nerdtree'
@@ -12,6 +12,11 @@ Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
+
+Plug 'ycm-core/YouCompleteMe'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
@@ -33,7 +38,7 @@ noremap <F2> :NERDTreeFocus<CR>
 " ----------------- Visual ------------------
 syntax enable
 set background=dark
-colorscheme Atelier_LakesideDark
+colorscheme molokai
 let g:airline_theme='Atelier_LakesideDark'
 
 let g:indentLine_conceallevel = 1
