@@ -2,19 +2,13 @@
     "explorer.confirmDelete": false,
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "terminal.integrated.fontFamily": "Inconsolata for Powerline",
-    "go.formatTool": "goimports",
-    "go.useLanguageServer": true,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[vue]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
+    "vetur.format.enable": false,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
     "go.lintTool": "gometalinter",
-    "editor.formatOnSave": true,
     "terraform.indexing": {
         "enabled": false,
         "liveIndexing": false,
