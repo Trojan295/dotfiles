@@ -7,7 +7,6 @@
     },
     "vetur.format.enable": false,
     "go.formatTool": "goimports",
-    "go.useLanguageServer": true,
     "go.lintTool": "gometalinter",
     "terraform.indexing": {
         "enabled": false,
@@ -22,4 +21,7 @@
         "enabled": true,
         "args": []
     },
+    "todo-tree.tree.showScanModeButton": false,
+    "editor.tabSize": 2,
+    "javascript.updateImportsOnFileMove.enabled": "always",
 }
