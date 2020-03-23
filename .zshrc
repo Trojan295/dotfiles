@@ -53,3 +53,6 @@ export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/
 #AWSume alias to source the AWSume script
 alias awsume=". awsume"
 fpath=(/usr/local/share/zsh/site-functions $fpath)
+
+complete -C 'aws_completer' aws
+

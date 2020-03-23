@@ -3,19 +3,14 @@
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "terminal.integrated.fontFamily": "Inconsolata for Powerline",
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll": true
     },
+    "editor.formatOnSave": true,
     "vetur.format.enable": false,
     "go.formatTool": "goimports",
-    "go.lintTool": "gometalinter",
+    "go.lintTool": "golangci-lint",
     "terraform.indexing": {
-        "enabled": false,
-        "liveIndexing": false,
-        "delay": 500,
-        "exclude": [
-            ".terraform/**/*",
-            "**/.terraform/**/*"
-        ]
+        "enabled": false
     },
     "terraform.languageServer": {
         "enabled": true,
@@ -23,5 +18,10 @@
     },
     "todo-tree.tree.showScanModeButton": false,
     "editor.tabSize": 2,
+    "[python]": {
+        "editor.tabSize": 4
+    },
     "javascript.updateImportsOnFileMove.enabled": "always",
+    "window.zoomLevel": 1,
+    "editor.mouseWheelZoom": true,
 }
