@@ -2,13 +2,30 @@
     "explorer.confirmDelete": false,
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "terminal.integrated.fontFamily": "Inconsolata for Powerline",
+    "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
+        "source.fixAll": true
     },
-    "editor.formatOnSave": true,
+
+    // javascript
+    "eslint.debug": true,
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "vue",
+    ],
+    "eslint.format.enable": true,
     "vetur.format.enable": false,
+    "[javascript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
+    "[typescript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+
+    //golang
     "go.formatTool": "goimports",
     "go.lintTool": "golangci-lint",
+    "go.useLanguageServer": true,
+
+    //terraform
     "terraform.indexing": {
         "enabled": false,
         "liveIndexing": false,
@@ -22,13 +39,11 @@
         "enabled": true,
         "args": []
     },
-    "todo-tree.tree.showScanModeButton": false,
-    "editor.tabSize": 2,
+
+    //python
     "[python]": {
         "editor.tabSize": 4
     },
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "javascript.format.semicolons": "remove",
-    "eslint.format.enable": true,
-    "go.useLanguageServer": true,
+
+    "todo-tree.tree.showScanModeButton": false,
 }
