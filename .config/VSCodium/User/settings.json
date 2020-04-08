@@ -46,4 +46,6 @@
     },
 
     "todo-tree.tree.showScanModeButton": false,
+    "window.zoomLevel": 1,
+    "editor.mouseWheelZoom": true,
 }

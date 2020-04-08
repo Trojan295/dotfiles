@@ -1,4 +1,5 @@
 .zshrc
+.zshenv
 .xsessionrc
 .config/i3
 .config/polybar
