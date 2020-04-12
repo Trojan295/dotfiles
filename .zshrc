@@ -47,7 +47,7 @@ alias clipboard='xclip -selection clipboard'
 
 export VISUAL=vim
 export EDITOR=$VISUAL
-export GOROOT="/usr/lib/go-1.13"
+export GOROOT="/usr/lib/go-1.14"
 
 export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
