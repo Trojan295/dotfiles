@@ -5,6 +5,7 @@ setopt INC_APPEND_HISTORY
 
 source "${HOME}/.zgen/zgen.zsh"
 autoload -U compinit && compinit
+autoload bashcompinit && bashcompinit
 
 export ZSH_CACHE_DIR=/tmp
 
@@ -57,3 +58,5 @@ alias awsume=". awsume"
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 
 complete -C 'aws_completer' aws
+source <(kubectl completion zsh)
+
