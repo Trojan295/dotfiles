@@ -1,7 +1,8 @@
 {
     "explorer.confirmDelete": false,
+    "editor.fontFamily": "JetBrains Mono",
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
-    "terminal.integrated.fontFamily": "Inconsolata for Powerline",
+    "terminal.integrated.fontFamily": "JetBrains Mono",
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
         "source.fixAll": true

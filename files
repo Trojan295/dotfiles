@@ -1,14 +1,6 @@
 .zshrc
-.zshenv
 .xsessionrc
-.config/i3
-.config/polybar
-.config/termite
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
 .config/VSCodium/User/settings.json
-.local/bin/launch-polybar.sh
-.local/bin/set-wallpaper.sh
-.local/bin/spotify-status.py
-.local/share/wallpapers

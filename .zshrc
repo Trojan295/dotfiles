@@ -3,12 +3,15 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
-source "${HOME}/.zgen/zgen.zsh"
+
 autoload -U compinit && compinit
 autoload bashcompinit && bashcompinit
+fpath=(/usr/local/share/zsh/site-functions $fpath)
 
 export ZSH_CACHE_DIR=/tmp
 
+# zgen
+source "${HOME}/.zgen/zgen.zsh"
 zgen load zsh-users/zsh-syntax-highlighting
 zgen load zdharma/history-search-multi-word
 zgen load bhilburn/powerlevel9k powerlevel9k
@@ -16,13 +19,6 @@ zgen load mdumitru/git-aliases
 zgen load zsh-users/zsh-autosuggestions
 zgen load ohmyzsh/ohmyzsh plugins/kubectl/kubectl.plugin.zsh
 zgen load ohmyzsh/ohmyzsh plugins/debian/debian.plugin.zsh
-
-zstyle ':completion:*' menu select
-
-zstyle ':completion:*' matcher-list '' \
-  'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
@@ -39,24 +35,38 @@ function chpwd() {
     ls --color
 }
 
-export PYTHONDONTWRITEBYTECODE=1
-export TERM=xterm-256color
-
 alias ls='ls --color'
 alias clipboard='xclip -selection clipboard'
 
-
+# system env variables
+export PYTHONDONTWRITEBYTECODE=1
+export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export GOROOT="/usr/lib/go-1.14"
-
 export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
 
-#AWSume alias to source the AWSume script
-alias awsume=". awsume"
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+# shell completion
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
-complete -C 'aws_completer' aws
-source <(kubectl completion zsh)
+# aws-cli completion
+if which aws > /dev/null ; then
+    complete -C 'aws_completer' aws
+fi
+
+# kubectl complation
+if which kubectl > /dev/null; then
+    source <(kubectl completion zsh)
+fi
+
+# pyenv completion
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
