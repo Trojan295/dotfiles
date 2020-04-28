@@ -40,7 +40,7 @@ alias clipboard='xclip -selection clipboard'
 
 # system env variables
 export PYTHONDONTWRITEBYTECODE=1
-export TERM=xterm-256color
+#export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export GOROOT="/usr/lib/go-1.14"
