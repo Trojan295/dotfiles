@@ -4,3 +4,4 @@
 .config/nvim/autoload
 .config/nvim/ftplugin
 .config/VSCodium/User/settings.json
+.config/alacritty/alacritty.yml
