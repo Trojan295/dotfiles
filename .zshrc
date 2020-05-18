@@ -75,3 +75,8 @@ if which pyenv > /dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+if which awsume > /dev/null; then
+    alias awsume=". awsume"
+    complete -C 'awsume-autocomplete' awsume
+fi
+
