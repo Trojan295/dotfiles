@@ -102,7 +102,7 @@
 # Font configuration
 font:
   normal:
-    family: JetBrains Mono
+    family: JetBrains Mono Medium
   size: 15.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
