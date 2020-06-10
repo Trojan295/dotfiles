@@ -56,4 +56,5 @@
     "window.zoomLevel": 1,
     "editor.mouseWheelZoom": true,
     "workbench.startupEditor": "newUntitledFile",
+    "editor.formatOnSave": true,
 }
