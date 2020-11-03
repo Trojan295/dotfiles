@@ -3,7 +3,6 @@ call plug#begin()
 
 " Visual
 Plug 'tomasr/molokai'
-Plug 'jvirtanen/vim-hcl'
 
 " Functional
 Plug 'scrooloose/nerdtree'
@@ -13,11 +12,6 @@ Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'ycm-core/YouCompleteMe'
-
-" Terraform
-Plug 'hashivim/vim-terraform'
 
 call plug#end()
 

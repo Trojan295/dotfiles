@@ -2,11 +2,12 @@
     "explorer.confirmDelete": false,
     "editor.fontFamily": "JetBrains Mono",
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
-    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "terminal.integrated.fontFamily": "JetBrains Mono Medium",
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
+    "editor.formatOnSave": true,
 
     // javascript
     "eslint.debug": true,
@@ -37,13 +38,9 @@
         ]
     },
     "terraform.languageServer": {
-        "enabled": true,
-        "args": []
-    },
-
-    "terraform.format": {
-        "ignoreExtensionsOnSave": [
-            ".tfsmurf"
+        "external": true,
+        "args": [
+            "serve"
         ]
     },
 
@@ -56,5 +53,6 @@
     "window.zoomLevel": 1,
     "editor.mouseWheelZoom": true,
     "workbench.startupEditor": "newUntitledFile",
-    "editor.formatOnSave": true,
+    "csharp.referencesCodeLens.enabled": false,
+    "editor.suggest.showColors": false,
 }

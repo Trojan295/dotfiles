@@ -3,5 +3,6 @@
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
-.config/Code/User/settings.json
+.config/VSCodium/User/settings.json
 .config/alacritty/alacritty.yml
+Wallpapers
