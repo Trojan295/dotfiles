@@ -8,7 +8,6 @@
         "source.fixAll": true
     },
     "editor.formatOnSave": true,
-
     // javascript
     "eslint.debug": true,
     "eslint.validate": [
@@ -18,15 +17,17 @@
     ],
     "eslint.format.enable": true,
     "vetur.format.enable": false,
-    "[javascript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
-    "[typescript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
     "javascript.updateImportsOnFileMove.enabled": "always",
-
     //golang
     "go.formatTool": "goimports",
     "go.lintTool": "golangci-lint",
     "go.useLanguageServer": true,
-
     //terraform
     "terraform.indexing": {
         "enabled": false,
@@ -43,12 +44,13 @@
             "serve"
         ]
     },
-
     //python
     "[python]": {
         "editor.tabSize": 4
     },
-
+    "[json]": {
+        "files.insertFinalNewline": true
+    },
     "todo-tree.tree.showScanModeButton": false,
     "window.zoomLevel": 1,
     "editor.mouseWheelZoom": true,
