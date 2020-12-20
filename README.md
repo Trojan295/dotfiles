@@ -1,6 +1,6 @@
 # Dotfiles
 
-The repository contains dotfiles for my desktop configuration.
+This repository contains dotfiles for my desktop configuration.
 
 ## Setup
 
@@ -21,3 +21,7 @@ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 make apply
 ```
+
+## Ubuntu Mainline Kernel Installer
+
+Refer to [mainline](https://github.com/bkw777/mainline) for instructions, on how to update the Linux kernel version.
