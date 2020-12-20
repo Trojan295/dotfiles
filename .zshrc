@@ -3,7 +3,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
-
 autoload -U compinit && compinit
 autoload bashcompinit && bashcompinit
 fpath=(/usr/local/share/zsh/site-functions $fpath)
@@ -43,8 +42,12 @@ export PYTHONDONTWRITEBYTECODE=1
 export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
-export PATH="$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin"
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="/usr/local/kubebuilder/bin:$PATH"
 
 # shell completion
 zstyle ':completion:*' menu select
@@ -78,8 +81,3 @@ if which awsume > /dev/null; then
     alias awsume=". awsume"
     complete -C 'awsume-autocomplete' awsume
 fi
-
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true

@@ -57,4 +57,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "csharp.referencesCodeLens.enabled": false,
     "editor.suggest.showColors": false,
+    // godot
+    "godot_tools.editor_path": "/usr/local/bin/godot",
+    "godot-tool.check_status": "true",
 }
