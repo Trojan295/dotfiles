@@ -48,6 +48,7 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/local/kubebuilder/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # shell completion
 zstyle ':completion:*' menu select
