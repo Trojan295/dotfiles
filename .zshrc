@@ -19,7 +19,7 @@ zgen load zsh-users/zsh-autosuggestions
 zgen load ohmyzsh/ohmyzsh plugins/kubectl/kubectl.plugin.zsh
 zgen load ohmyzsh/ohmyzsh plugins/debian/debian.plugin.zsh
 
-
+# theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -77,6 +77,7 @@ if which pyenv > /dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# awsume completion
 if which awsume > /dev/null; then
     alias awsume=". awsume"
     complete -C 'awsume-autocomplete' awsume
