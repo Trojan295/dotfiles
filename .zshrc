@@ -3,21 +3,27 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
-autoload -U compinit && compinit
-autoload bashcompinit && bashcompinit
-fpath=(/usr/local/share/zsh/site-functions $fpath)
-
 export ZSH_CACHE_DIR=/tmp
 
-# zgen
-source "${HOME}/.zgen/zgen.zsh"
-zgen load zsh-users/zsh-syntax-highlighting
-zgen load zdharma/history-search-multi-word
-zgen load bhilburn/powerlevel9k powerlevel9k
-zgen load mdumitru/git-aliases
-zgen load zsh-users/zsh-autosuggestions
-zgen load ohmyzsh/ohmyzsh plugins/kubectl/kubectl.plugin.zsh
-zgen load ohmyzsh/ohmyzsh plugins/debian/debian.plugin.zsh
+autoload bashcompinit && bashcompinit
+
+# zplug
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zdharma/history-search-multi-word"
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "mdumitru/git-aliases"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "plugins/debian", from:oh-my-zsh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
 
 # theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
@@ -49,6 +55,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/local/kubebuilder/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
+
+export GOPATH="$HOME/go"
 
 # shell completion
 zstyle ':completion:*' menu select
@@ -83,3 +91,9 @@ if which awsume > /dev/null; then
     alias awsume=". awsume"
     complete -C 'awsume-autocomplete' awsume
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/damian/Pobrane/google-cloud-sdk/path.zsh.inc' ]; then . '/home/damian/Pobrane/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/damian/Pobrane/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/damian/Pobrane/google-cloud-sdk/completion.zsh.inc'; fi

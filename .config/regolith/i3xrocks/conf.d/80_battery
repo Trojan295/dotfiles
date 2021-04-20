@@ -1,0 +1,4 @@
+# Battery
+[battery]
+command=battery
+interval=10
