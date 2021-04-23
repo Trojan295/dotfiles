@@ -1,4 +1,5 @@
 .zshrc
+.p10k.zsh
 .xsessionrc
 .config/nvim/init.vim
 .config/nvim/autoload

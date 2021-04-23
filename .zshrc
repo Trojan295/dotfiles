@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
@@ -15,6 +22,7 @@ zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "mdumitru/git-aliases"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "plugins/debian", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -25,11 +33,8 @@ fi
 
 zplug load
 
-# theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MODE='awesome-fontconfig'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
