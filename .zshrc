@@ -17,7 +17,7 @@ autoload bashcompinit && bashcompinit
 # zplug
 source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zdharma/history-search-multi-word"
+zplug "jimeh/zsh-peco-history", defer:2
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "mdumitru/git-aliases"
 zplug "zsh-users/zsh-autosuggestions"
