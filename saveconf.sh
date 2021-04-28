@@ -26,5 +26,7 @@ for f in $(cat files); do
     save $f
 done
 
+dconf dump / > dconf_settings.dconf
+
 echo "Done"
 

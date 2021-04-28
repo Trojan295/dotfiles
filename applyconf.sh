@@ -33,5 +33,7 @@ for f in $(cat files); do
     install $f
 done
 
+dconf load / < dconf_settings.dconf
+
 echo "Done"
 
