@@ -1,0 +1,2 @@
+/org/gnome/desktop/
+/org/gnome/shell/
