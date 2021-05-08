@@ -33,8 +33,4 @@ for f in $(cat files); do
     install $f
 done
 
-for path in $(cat dconf_paths.txt); do
-    dconf load "${path}" < "dconf${path}/data.ini"
-done
-
 echo "Done"

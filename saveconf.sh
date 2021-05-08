@@ -26,9 +26,4 @@ for f in $(cat files); do
     save $f
 done
 
-for path in $(cat dconf_paths.txt); do
-    mkdir -p "dconf${path}"
-    dconf dump "${path}" > "dconf${path}/data.ini"
-done
-
 echo "Done"

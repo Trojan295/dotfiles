@@ -12,16 +12,25 @@ This repository contains dotfiles for my desktop configuration.
 ## Configuration
 
 ```
-sudo apt install -y git zsh alacritty neovim
+sudo apt install -y git zsh alacritty neovim fonts-powerline
 chsh -s /bin/zsh
 
-git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+# install zplug
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 ./scripts/jetbrains-fonts.sh
 
 make apply
 ```
 
-## Ubuntu Mainline Kernel Installer
+## Pulseaudio with JACK
 
-Refer to [mainline](https://github.com/bkw777/mainline) for instructions, on how to update the Linux kernel version.
+1. Install JACK
+    ```
+    sudo apt install -y qjackctl pulseaudio-module-jack
+    sudo usermod -aG audio "${USER}"
+    ```
+
+2. Configure QJackCtl:
+    - **Setup -> Settings**: Select the correct interface and parameters.
+    - **Setup -> Options -> Execute script after Startup**: `pacmd set-default-sink jack_out && pacmd set-default-source jack_in`
