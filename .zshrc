@@ -57,9 +57,7 @@ export EDITOR=$VISUAL
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/local/kubebuilder/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
 
 export GOPATH="$HOME/go"
 
@@ -85,9 +83,11 @@ if which helm > /dev/null; then
     source <(helm completion zsh)
 fi
 
-# pyenv completion
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 if which pyenv > /dev/null; then
-    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 fi
 
@@ -97,8 +97,8 @@ if which awsume > /dev/null; then
     complete -C 'awsume-autocomplete' awsume
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/damian/Pobrane/google-cloud-sdk/path.zsh.inc' ]; then . '/home/damian/Pobrane/google-cloud-sdk/path.zsh.inc'; fi
+# Scaleway CLI autocomplete initialization.
+if which scw > /dev/null; then
+    eval "$(scw autocomplete script shell=zsh)"
+fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/damian/Pobrane/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/damian/Pobrane/google-cloud-sdk/completion.zsh.inc'; fi
