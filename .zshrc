@@ -101,4 +101,3 @@ fi
 if which scw > /dev/null; then
     eval "$(scw autocomplete script shell=zsh)"
 fi
-
