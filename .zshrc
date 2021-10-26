@@ -36,16 +36,18 @@ zplug load
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 # execute after changing PWD
 function chpwd() {
     emulate -L zsh
-    ls --color
+    ls -G
 }
 
-alias ls='ls --color'
+alias ls='ls -G'
 alias clipboard='xclip -selection clipboard'
 
 # system env variables
@@ -54,7 +56,6 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/kubebuilder/bin:$PATH"
@@ -82,6 +83,8 @@ fi
 if which helm > /dev/null; then
     source <(helm completion zsh)
 fi
+
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
