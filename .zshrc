@@ -10,8 +10,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 
-export ZSH_CACHE_DIR=/tmp
-
 autoload bashcompinit && bashcompinit
 
 # zplug
@@ -23,6 +21,7 @@ zplug "mdumitru/git-aliases"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "plugins/debian", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/asdf", from:oh-my-zsh
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -41,14 +40,14 @@ bindkey '^[[1;9D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
+alias ls='ls -G'
+alias clipboard='xclip -selection clipboard'
+
 # execute after changing PWD
 function chpwd() {
     emulate -L zsh
-    ls -G
+    ls
 }
-
-alias ls='ls -G'
-alias clipboard='xclip -selection clipboard'
 
 # system env variables
 export PYTHONDONTWRITEBYTECODE=1
@@ -56,7 +55,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/kubebuilder/bin:$PATH"
 
@@ -84,8 +83,6 @@ if which helm > /dev/null; then
     source <(helm completion zsh)
 fi
 
-export PATH="$HOME/Library/Python/3.8/bin:$PATH"
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -103,4 +100,9 @@ fi
 # Scaleway CLI autocomplete initialization.
 if which scw > /dev/null; then
     eval "$(scw autocomplete script shell=zsh)"
+fi
+
+# Flux autocompletion
+if which flux > /dev/null; then
+    . <(flux completion zsh)
 fi
