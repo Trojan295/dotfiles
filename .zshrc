@@ -106,3 +106,8 @@ fi
 if which flux > /dev/null; then
     . <(flux completion zsh)
 fi
+
+if [[ -d /opt/flutter ]]; then
+    export PATH="${PATH}:/opt/flutter/bin"
+fi
+

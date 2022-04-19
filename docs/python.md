@@ -18,5 +18,5 @@
 4. Install Python version
    ```bash
    PYTHON_VERSION="3.9.7"
-   pyenv install "${PYTHON_VERSION}
+   pyenv install "${PYTHON_VERSION}"
    ```
