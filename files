@@ -1,6 +1,7 @@
 .zshrc
 .p10k.zsh
 .xsessionrc
+.profile
 .config/nvim/init.vim
 .config/nvim/autoload
 .config/nvim/ftplugin
