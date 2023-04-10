@@ -40,6 +40,9 @@ zinit cdreplay -q
 
 ### End of Zinit's installer chunk
 
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
 alias ls='ls -G'
 
 # execute after changing PWD

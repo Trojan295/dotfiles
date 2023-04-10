@@ -2,7 +2,7 @@
 
 set -eEu
 
-SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 CONFIG_FILES_DIR="${SCRIPT_DIR}/../servers"
 
 main() {
