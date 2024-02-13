@@ -1,8 +1,5 @@
-.zshrc
-.p10k.zsh
-.xsessionrc
-.profile
 .config/nvim/init.vim
 .config/nvim/autoload
-.config/nvim/ftplugin
-.config/alacritty/alacritty.yml
+.config/kitty
+.config/nushell/config.nu
+.config/nushell/env.nu
