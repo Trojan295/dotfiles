@@ -3,3 +3,6 @@
 .config/kitty
 .config/nushell/config.nu
 .config/nushell/env.nu
+.config/nushell/autoload
+.gitignore
+.gitconfig

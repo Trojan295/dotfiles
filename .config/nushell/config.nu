@@ -252,7 +252,13 @@ $env.config = {
         pre_prompt: [{ null }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
         env_change: {
-            PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
+            PWD: [{|before, after|
+                if (which direnv | is-empty) {
+                    return
+                }
+
+                direnv export json | from json | default {} | load-env
+            }] # run if the PWD environment is different since the last repl input
         }
         display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
         command_not_found: { null } # return an error message when a command is not found
@@ -378,7 +384,18 @@ $env.config = {
             modifier: control
             keycode: char_r
             mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: history_menu }
+            event: {
+                send: ExecuteHostCommand
+                cmd: "commandline (
+                    history
+                        | each {|it| $it.command }
+                        | uniq
+                        | reverse
+                        | str join "\n"
+                        | peco --query (commandline)
+                        | str trim
+                )"
+            }
         }
         {
             name: help_menu
@@ -849,8 +866,5 @@ $env.config = {
 
 source ~/.oh-my-posh.nu
 
-alias k = kubectl
-alias kcuc = kubectl config use-context
-alias kcn = kubectl config set-context --current --namespace
-alias less = less -R
-alias rm = trash
+use ~/.config/nushell/autoload *
+
