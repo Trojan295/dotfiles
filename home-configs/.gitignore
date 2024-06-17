@@ -1,0 +1,5 @@
+hidden
+.envrc
+.env
+.vscode
+__pycache__

@@ -8,15 +8,10 @@ install() {
 
     echo "Installing $1"
 
-    local src="$1"
+    local src="home-configs/$1"
+    local dst="$HOME/${1}"
 
-    local dst="$HOME/$1"
-    local dst_dir=$(dirname $dst)
-    if [ -d "$src" ]; then
-        dst=$dst_dir
-    fi
-
-    mkdir -p $dst_dir
+    mkdir -p $(dirname $dst)
     cp -r "$src" "$dst"
 }
 
@@ -34,3 +29,4 @@ for f in $(cat files); do
 done
 
 echo "Done"
+

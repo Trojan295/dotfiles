@@ -9,15 +9,10 @@ save() {
     echo "Saving $1"
 
     local src="$HOME/$1"
-    local dst_dir=$(dirname $1)
+    local dst="home-configs/${1}"
 
-    local dst=$1
-    if [ -d "$src" ]; then
-        dst=$dst_dir
-    fi
-
-    mkdir -p $dst_dir
-    cp -r $src $dst
+    mkdir -p $(dirname $dst)
+    cp -r "$src" "$dst"
 }
 
 echo "Saving dotfiles..."
@@ -27,3 +22,4 @@ for f in $(cat files); do
 done
 
 echo "Done"
+

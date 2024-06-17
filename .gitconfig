@@ -1,6 +1,0 @@
-[core]
-	excludeFiles = '~/.gitignore'
-	excludesFile = ~/.gitignore
-[user]
-	email = trojan295@protonmail.com
-	name = Damian Czaja
