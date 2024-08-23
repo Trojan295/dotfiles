@@ -8,7 +8,7 @@ fi
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
-export EDITOR=vim
+export EDITOR=nvim
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -37,31 +37,42 @@ zinit load zsh-users/zsh-syntax-highlighting
 zinit load jimeh/zsh-peco-history
 zinit load mdumitru/git-aliases
 zinit snippet OMZP::dotenv
-zinit snippet OMZP::debian
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::direnv
 
-autoload -Uz compinit
-compinit
+zinit snippet OMZP::debian # TODO: make this conditional
+[[ "$(uname -o)" == "Darwin" ]] && zinit snippet OMZP::brew
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 eval "$(zoxide init zsh --cmd cd)"
 source <(fzf --zsh)
 
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' \
   'm:{a-z\-}={A-Z\_}' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
-source <(carapace _carapace)
+
+if which carapace 2>&1 > /dev/null; then
+  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+  source <(carapace _carapace)
+fi
 
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Programy/zig"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# Pyenv
+if which pyenv 2>&1 > /dev/null; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# AWS
+which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

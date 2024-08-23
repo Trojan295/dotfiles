@@ -11,8 +11,13 @@ save() {
     local src="$HOME/$1"
     local dst="home-configs/${1}"
 
-    mkdir -p $(dirname $dst)
-    cp -r "$src" "$dst"
+    echo mkdir -p $(dirname $dst)
+
+    if [ -d "$src" ]; then
+        cp -r "$src" "$(dirname $dst)"
+    else
+        cp -r "$src" "$dst"
+    fi
 }
 
 echo "Saving dotfiles..."
