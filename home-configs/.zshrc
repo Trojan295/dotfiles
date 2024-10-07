@@ -48,7 +48,7 @@ zinit snippet OMZP::debian # TODO: make this conditional
 [[ "$(uname -o)" == "Darwin" ]] && zinit snippet OMZP::brew
 
 add_path_if_exists "/opt/nvim-linux64/bin"
-add_path_if_exists "/usr/local/bin/go"
+add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
 
