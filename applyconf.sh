@@ -12,7 +12,13 @@ install() {
     local dst="$HOME/${1}"
 
     mkdir -p $(dirname $dst)
-    cp -r "$src" "$dst"
+
+    if [ -d "$src" ]; then
+        cp -r "$src" "$(dirname $dst)"
+    else
+        cp -r "$src" "$dst"
+    fi
+
 }
 
 read -p "Are you sure? (y/n)? " choice

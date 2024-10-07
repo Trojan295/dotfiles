@@ -2,7 +2,7 @@
 size = 15.0
 
 [font.normal]
-family = "MesloLGM Nerd Font"
+family = "Mononoki Nerd Font"
 
 [keyboard]
 bindings = [

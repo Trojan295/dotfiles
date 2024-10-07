@@ -11,7 +11,7 @@ save() {
     local src="$HOME/$1"
     local dst="home-configs/${1}"
 
-    echo mkdir -p $(dirname $dst)
+    mkdir -p $(dirname $dst)
 
     if [ -d "$src" ]; then
         cp -r "$src" "$(dirname $dst)"

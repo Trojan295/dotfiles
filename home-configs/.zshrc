@@ -10,6 +10,10 @@ export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 export EDITOR=nvim
 
+add_path_if_exists() {
+  [[ -d "$1" ]] && export PATH="$PATH:$1"
+}
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -43,6 +47,11 @@ zinit snippet OMZP::direnv
 zinit snippet OMZP::debian # TODO: make this conditional
 [[ "$(uname -o)" == "Darwin" ]] && zinit snippet OMZP::brew
 
+add_path_if_exists "/opt/nvim-linux64/bin"
+add_path_if_exists "/usr/local/bin/go"
+add_path_if_exists "$HOME/go/bin"
+add_path_if_exists "$HOME/.local/bin"
+
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
@@ -60,13 +69,10 @@ if which carapace 2>&1 > /dev/null; then
   source <(carapace _carapace)
 fi
 
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/Programy/zig"
-
 # Pyenv
 if which pyenv 2>&1 > /dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  add_path_if_exists "$PYENV_ROOT/bin"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
