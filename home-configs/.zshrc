@@ -8,6 +8,7 @@ fi
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
+setopt SHARE_HISTORY
 export EDITOR=nvim
 
 add_path_if_exists() {
@@ -64,11 +65,6 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
-if which carapace 2>&1 > /dev/null; then
-  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
-  source <(carapace _carapace)
-fi
-
 # Pyenv
 if which pyenv 2>&1 > /dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -80,5 +76,10 @@ fi
 # AWS
 which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
