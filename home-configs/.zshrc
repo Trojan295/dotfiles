@@ -24,11 +24,7 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{160} The clone has failed.%f%b"
 fi
 
-export DIRENV_LOG_FORMAT=""
-
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -43,9 +39,7 @@ zinit load jimeh/zsh-peco-history
 zinit load mdumitru/git-aliases
 zinit snippet OMZP::dotenv
 zinit snippet OMZP::kubectl
-zinit snippet OMZP::direnv
-
-zinit snippet OMZP::debian # TODO: make this conditional
+zinit snippet OMZP::debian
 [[ "$(uname -o)" == "Darwin" ]] && zinit snippet OMZP::brew
 
 add_path_if_exists "/opt/nvim-linux64/bin"
@@ -55,6 +49,8 @@ add_path_if_exists "$HOME/.local/bin"
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
+
+zinit cdreplay -q
 
 eval "$(zoxide init zsh --cmd cd)"
 source <(fzf --zsh)
@@ -76,10 +72,25 @@ fi
 # AWS
 which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if which skaffold 2>&1 > /dev/null; then
+  source <(skaffold completion zsh)
+fi
+
+if which kubectl 2>&1 > /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+if which helm 2>&1 > /dev/null; then
+  source <(helm completion zsh)
+fi
+
+if which kind 2>&1 > /dev/null; then
+  source <(kind completion zsh)
+fi
