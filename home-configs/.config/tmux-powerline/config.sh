@@ -42,6 +42,7 @@
 	#export TMUX_POWERLINE_MUTE_RIGHT_KEYBINDING="C-]"
 
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
+		"kubernetes_context 0 255"
 		#"tmux_session_info 148 234"
 		#"hostname 33 0"
 		#"mode_indicator 165 0"
@@ -50,7 +51,7 @@
 		#"lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		#"wan_ip 25 255"
-		"vcs_branch 29 88"
+		#"vcs_branch 29 88"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
 		#"vcs_modified 9 255"
@@ -58,7 +59,6 @@
 	)
 
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		"kubernetes_context 0 255"
 		#"earthquake 3 0"
 		#"pwd 89 211"
 		#"macos_notification_count 29 255"

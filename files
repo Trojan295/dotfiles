@@ -2,6 +2,5 @@
 .config/tmux/tmux.conf
 .config/tmux-powerline/config.sh
 .zshrc
-.p10k.zsh
 .gitignore
 .gitconfig
