@@ -1,13 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
+export HISTSIZE=10000
+export SAVEHIST=10000
 setopt SHARE_HISTORY
 export EDITOR=nvim
 
@@ -30,7 +23,8 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 zinit ice depth"1"
-zinit light romkatv/powerlevel10k
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 
 zinit load zsh-users/zsh-autosuggestions
 zinit load zsh-users/zsh-completions
@@ -72,13 +66,6 @@ fi
 # AWS
 which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 if which skaffold 2>&1 > /dev/null; then
   source <(skaffold completion zsh)
 fi
@@ -94,3 +81,4 @@ fi
 if which kind 2>&1 > /dev/null; then
   source <(kind completion zsh)
 fi
+
