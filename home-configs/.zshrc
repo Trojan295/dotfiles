@@ -55,14 +55,6 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
-# Pyenv
-if which pyenv 2>&1 > /dev/null; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  add_path_if_exists "$PYENV_ROOT/bin"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
 # AWS
 which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
 
@@ -89,3 +81,4 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/damian/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
