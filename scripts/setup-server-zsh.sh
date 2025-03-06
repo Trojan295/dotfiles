@@ -14,4 +14,5 @@ main() {
   scp "${CONFIG_FILES_DIR}/p10k.zsh" "${SERVER_IP_ADDR}:.p10k.zsh"
 }
 
+# shellcheck disable=SC2068
 main $@
