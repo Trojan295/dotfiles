@@ -14,9 +14,10 @@ apply_theme() {
 
 main() {
   local current_theme
-  current_theme="$(cat ~/.config/theme)"
-  if [ -z "$current_theme" ]; then
-    current_theme="dark"
+
+  current_theme="dark"
+  if [ -f ~/.config/theme ]; then
+    current_theme="$(cat ~/.config/theme)"
   fi
 
   local new_theme
