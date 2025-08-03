@@ -1,6 +1,8 @@
 .config/alacritty
 .config/tmux/tmux.conf
 .config/tmux-powerline/config.sh
+.config/hypr
+.config/waybar
 .zshrc
 .gitignore
 .gitconfig

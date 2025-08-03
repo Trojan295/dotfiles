@@ -40,6 +40,7 @@ add_path_if_exists "/opt/nvim-linux64/bin"
 add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
+add_path_if_exists "$HOME/Development/flutter/bin"
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -74,11 +75,14 @@ if which kind 2>&1 > /dev/null; then
   source <(kind completion zsh)
 fi
 
-
 # fnm
 FNM_PATH="${HOME}/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="/home/damian/.local/share/fnm:$PATH"
   eval "`fnm env`"
+fi
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
 fi
 
