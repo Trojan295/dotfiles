@@ -26,15 +26,32 @@ zinit ice depth"1"
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
-zinit load zsh-users/zsh-autosuggestions
-zinit load zsh-users/zsh-completions
-zinit load zsh-users/zsh-syntax-highlighting
-zinit load jimeh/zsh-peco-history
-zinit load mdumitru/git-aliases
+# Core plugins (lazy)
+zinit ice wait"1"
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait"1"
+zinit light zsh-users/zsh-completions
+
+# Fuzzy finder (high value)
+zinit light junegunn/fzf
+zinit light Aloxaf/fzf-tab
+
+# Git + history
+zinit light mdumitru/git-aliases
+zinit light agkozak/zsh-z
+
+# Optional: modern history
+# zinit light atuinsh/atuin
+
+# OMZ snippets
 zinit snippet OMZP::dotenv
 zinit snippet OMZP::kubectl
-zinit snippet OMZP::debian
-[[ "$(uname -o)" == "Darwin" ]] && zinit snippet OMZP::brew
+
+[[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::brew
+
+# ALWAYS LAST
+zinit light zsh-users/zsh-syntax-highlighting
 
 add_path_if_exists "/opt/nvim-linux64/bin"
 add_path_if_exists "/usr/local/go/bin"
