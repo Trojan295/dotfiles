@@ -41,6 +41,12 @@ add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
 add_path_if_exists "$HOME/Development/flutter/bin"
+add_path_if_exists "$HOME/.pub-cache/bin"
+add_path_if_exists "$HOME/.mix/escripts"
+add_path_if_exists "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+
+export ANDROID_HOME="$HOME/Android/Sdk"
+add_path_if_exists "$ANDROID_HOME/platform-tools"
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -83,6 +89,17 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+  tmux
 fi
 
+
+. "$HOME/.local/share/../bin/env"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/damian/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/damian/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+
+# opencode
+export PATH=/home/damian/.opencode/bin:$PATH

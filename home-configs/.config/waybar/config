@@ -4,7 +4,10 @@
   "height": 32,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "backlight", "battery", "tray"],
+  "modules-right": [
+    "pulseaudio", "backlight",
+    "battery", "tray", "custom/powermenu"
+  ],
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -28,6 +31,7 @@
 
   "battery": {
     "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
     "format-icons": ["", "", "", "", ""]
   },
 
@@ -40,6 +44,19 @@
   "tray": {
     "icon-size": 16,
     "spacing": 5
+  },
+
+  "custom/powermenu": {
+    "format": "⏻ ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-actions": {
+        "shutdown": "systemctl poweroff",
+        "reboot": "systemctl reboot",
+        "suspend": "systemctl hybrid-sleep"
+    },
+    "menu-classes": ["menu"]
   }
 }
 

@@ -42,7 +42,6 @@ export TMUX_POWERLINE_WINDOW_STATUS_SEPARATOR=""
 #export TMUX_POWERLINE_MUTE_RIGHT_KEYBINDING="C-]"
 
 TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-  #"pwd 89 211"
   "tmux_session_info 148 234"
   #"hostname 33 0"
   #"mode_indicator 165 0"
@@ -59,8 +58,8 @@ TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 )
 
 TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-  "kubernetes_context 0 255"
   #"earthquake 3 0"
+  #"pwd 89 211"
   #"macos_notification_count 29 255"
   #"mailcount 9 255"
   #"now_playing 234 37"
@@ -76,6 +75,7 @@ TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
   #"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
   #"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
   #"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+  "kubernetes_context 0 255"
 )
 
 # }
