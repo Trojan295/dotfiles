@@ -110,8 +110,6 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 
-. "$HOME/.local/share/../bin/env"
-
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/damian/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/damian/.config/.dart-cli-completion/zsh-config.zsh || true
@@ -120,3 +118,7 @@ fi
 
 # opencode
 export PATH=/home/damian/.opencode/bin:$PATH
+
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi

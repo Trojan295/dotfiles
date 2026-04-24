@@ -1,50 +1,112 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: JetBrains Mono, sans-serif;
-  font-size: 14px;
+  font-family: "JetBrains Mono Nerd Font", "JetBrains Mono", monospace;
+  font-size: 13px;
   min-height: 0;
 }
 
 window#waybar {
-  background: #282a36;
-  color: #f8f8f2;
-  border-bottom: 2px solid #44475a;
+  background: transparent;
+  color: #DCD7BA;
+}
+
+#workspaces {
+  background: #1F1F28;
+  margin: 6px 6px 6px 12px;
+  border-radius: 16px;
+  padding: 2px 4px;
 }
 
 #workspaces button {
   padding: 0 8px;
-  color: #6272a4;
-  border: none;
+  color: #54546D;
+  background: transparent;
+  border-radius: 12px;
 }
 
 #workspaces button.active {
-  color: #f8f8f2;
-  background: #44475a;
+  color: #DCD7BA;
+  background: #2D4F67;
 }
 
-#clock,
-#cpu,
-#memory,
-#network,
+#workspaces button:hover {
+  color: #DCD7BA;
+  background: #2A2A37;
+}
+
+#clock {
+  background: #1F1F28;
+  margin: 6px;
+  border-radius: 16px;
+  padding: 2px 16px;
+  font-weight: bold;
+  color: #E6C384;
+}
+
 #pulseaudio,
+#backlight,
+#network,
 #battery,
-#tray {
+#tray,
+#custom-powermenu {
+  background: #1F1F28;
+  min-height: 20px;
+  margin: 4px 0;
+}
+
+#pulseaudio {
   padding: 0 10px;
-  background: transparent;
-  font-family: JetBrains Mono, sans-serif;
+  color: #7AA89F;
+  border-radius: 16px 0 0 16px;
+  margin-left: 12px;
+}
+
+#backlight,
+#network,
+#battery {
+  padding: 0 10px;
+  color: #7AA89F;
+}
+
+#pulseaudio.muted {
+  color: #54546D;
+}
+
+#battery.charging {
+  color: #E6C384;
+}
+
+#battery.warning:not(.charging) {
+  color: #E6C384;
+}
+
+#battery.critical:not(.charging) {
+  color: #D27E99;
+}
+
+#tray {
+  padding: 0 6px;
 }
 
 #tray * {
-  font-family: JetBrains, sans-serif;
+  font-family: "JetBrains Mono Nerd Font", "JetBrains Mono", monospace;
+}
+
+#custom-powermenu {
+  padding: 0 10px 0 6px;
+  color: #D27E99;
+  border-radius: 0 16px 16px 0;
+  margin-right: 12px;
 }
 
 menu,
 menuitem {
-  background-color: #282a36;
-  color: #f8f8f2;
+  background-color: #1F1F28;
+  color: #DCD7BA;
+  border-radius: 8px;
 }
 
 menuitem:hover {
-  background-color: #44475a;
+  background-color: #2A2A37;
 }

@@ -2,43 +2,58 @@
   "layer": "top",
   "position": "top",
   "height": 32,
+  "spacing": 0,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
-    "pulseaudio", "backlight",
-    "battery", "tray", "custom/powermenu"
+    "pulseaudio", "backlight", "network", "battery", "tray", "custom/powermenu"
   ],
 
   "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-      "1": "", "2": "", "3": "", "4": "", "5": "",
-      "default": ""
+      "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+      "default": "N"
     }
   },
 
   "clock": {
-    "format": " {:%a %d %b  %H:%M}",
-    "tooltip": false
+    "format": " {:%a %d %b  %H:%M} ",
+    "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
   "pulseaudio": {
-    "format": " {volume}%",
-    "format-muted": " muted",
+    "format": "{icon} {volume}%",
+    "format-muted": " muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
     "on-click": "pavucontrol"
   },
 
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
+    "format-charging": " {capacity}%",
     "format-icons": ["", "", "", "", ""]
   },
 
   "backlight": {
-  	"device": "intel_backlight",
-  	"format": "{icon} {percent}%",
-  	"format-icons": ["", ""]
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""]
+  },
+
+  "network": {
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "{icon} {ifname}",
+    "format-linked": "{icon} {ifname}",
+    "format-disconnected": " Disconnected",
+    "format-icons": {
+      "wifi": ["", "", ""],
+      "ethernet": [""]
+    },
+    "on-click": "nm-connection-editor"
   },
 
   "tray": {
@@ -59,4 +74,3 @@
     "menu-classes": ["menu"]
   }
 }
-
