@@ -98,6 +98,10 @@ if which kind 2>&1 > /dev/null; then
   source <(kind completion zsh)
 fi
 
+if which castctl 2>&1 > /dev/null; then
+  source <(castctl completion zsh)
+fi
+
 # fnm
 FNM_PATH="${HOME}/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then

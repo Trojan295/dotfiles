@@ -12,17 +12,23 @@
 	process = git-lfs filter-process
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-    navigate = true    # use n and N to move between diff sections
-
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
+  navigate = true    # use n and N to move between diff sections
+  # delta detects terminal colors automatically; set one of these to disable auto-detection
+  # dark = true
+  # light = true
 
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+  colorMoved = default
+
+[url "git@github.com:castai/"]
+  insteadOf = https://github.com/castai/
+
+[includeIf "gitdir:~/Projekty/castroot/"]
+  path = ~/.gitconfig-cast
+
