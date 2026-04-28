@@ -5,7 +5,7 @@ option_as_alt = "OnlyLeft"
 size = 20.0
 
 [font.normal]
-family = "JetBrains Mono"
+family = "MesloLGM Nerd Font Mono"
 
 [keyboard]
 bindings = [

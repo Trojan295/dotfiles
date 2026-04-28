@@ -51,9 +51,14 @@ zinit snippet OMZP::kubectl
 [[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::brew
 
 # ALWAYS LAST
+# Defer syntax highlighting until after the first prompt is rendered.
+# Using wait"1" instead of wait"0" avoids the "$region_highlight is not defined"
+# race where _zsh_highlight runs before ZLE init. atload is removed — the plugin
+# hooks itself into ZLE via its own widgets when sourced.
+zinit ice wait"1" lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
-add_path_if_exists "/opt/nvim-linux64/bin"
+[[ "$OSTYPE" != "darwin"* ]] && add_path_if_exists "/opt/nvim-linux64/bin"
 add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
@@ -65,13 +70,18 @@ add_path_if_exists "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 export ANDROID_HOME="$HOME/Android/Sdk"
 add_path_if_exists "$ANDROID_HOME/platform-tools"
 
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
+# Run compinit's full security check at most once per day; otherwise use the cached dump.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 zinit cdreplay -q
 
 eval "$(zoxide init zsh --cmd cd)"
-source <(fzf --zsh)
+
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' \
@@ -79,34 +89,52 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
-# AWS
-which aws_completer 2>&1 > /dev/null && complete -C '/usr/local/bin/aws_completer' aws
-
-if which skaffold 2>&1 > /dev/null; then
-  source <(skaffold completion zsh)
+# bashcompinit is only needed for aws_completer — load it lazily.
+if command -v aws_completer &>/dev/null; then
+  autoload -Uz bashcompinit && bashcompinit
+  complete -C "$(command -v aws_completer)" aws
 fi
 
-if which kubectl 2>&1 > /dev/null; then
-  source <(kubectl completion zsh)
-fi
+# Cache CLI completions to disk to avoid spawning subprocesses on every shell startup.
+# Invalidates when the binary's mtime changes (e.g. brew upgrade) or after 30 days as a safety net.
+_cache_completion() {
+  local cmd="$1"; shift
+  local cache="$HOME/.zsh_completion_cache/_${cmd}"
+  local bin
+  bin=$(command -v "$cmd") || return
+  mkdir -p "$HOME/.zsh_completion_cache"
+  # Regenerate if cache is missing, the binary is newer than the cache, or the cache is >30 days old.
+  if [[ ! -f "$cache" ]] || [[ "$bin" -nt "$cache" ]] || [[ -n $(find "$cache" -mtime +30 2>/dev/null) ]]; then
+    "$cmd" "$@" > "$cache" 2>/dev/null
+  fi
+  [[ -s "$cache" ]] && source "$cache"
+}
 
-if which helm 2>&1 > /dev/null; then
-  source <(helm completion zsh)
-fi
+# Manual refresh escape hatch: run `zsh-refresh-completions` to clear the cache.
+zsh-refresh-completions() {
+  rm -rf "$HOME/.zsh_completion_cache"
+  echo "Completion cache cleared. Restart your shell or re-source ~/.zshrc."
+}
 
-if which kind 2>&1 > /dev/null; then
-  source <(kind completion zsh)
-fi
+command -v kubectl  &>/dev/null && _cache_completion kubectl  completion zsh
+command -v helm     &>/dev/null && _cache_completion helm     completion zsh
+command -v kind     &>/dev/null && _cache_completion kind     completion zsh
+command -v castctl  &>/dev/null && _cache_completion castctl  completion zsh
+command -v skaffold &>/dev/null && _cache_completion skaffold completion zsh
 
-if which castctl 2>&1 > /dev/null; then
-  source <(castctl completion zsh)
-fi
-
-# fnm
+# Lazy-load fnm — only initialize when node/npm/npx/yarn/pnpm is first invoked.
+# Also fixes a bug where the Linux path /home/damian/... was hardcoded on macOS.
 FNM_PATH="${HOME}/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/damian/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+if [[ -d "$FNM_PATH" ]]; then
+  export PATH="$FNM_PATH:$PATH"
+  _fnm_lazy_init() {
+    unset -f node npm npx yarn pnpm 2>/dev/null
+    eval "$(fnm env --use-on-cd)"
+  }
+  for _cmd in node npm npx yarn pnpm; do
+    eval "${_cmd}() { _fnm_lazy_init; ${_cmd} \"\$@\"; }"
+  done
+  unset _cmd
 fi
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -116,12 +144,12 @@ fi
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /home/damian/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/damian/.config/.dart-cli-completion/zsh-config.zsh || true
+[[ -f "$HOME/.config/.dart-cli-completion/zsh-config.zsh" ]] && source "$HOME/.config/.dart-cli-completion/zsh-config.zsh"
 ## [/Completion]
 
 
 # opencode
-export PATH=/home/damian/.opencode/bin:$PATH
+[[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
