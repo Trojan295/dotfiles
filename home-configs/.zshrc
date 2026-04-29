@@ -34,6 +34,7 @@ zinit ice wait"1"
 zinit light zsh-users/zsh-completions
 
 # Fuzzy finder (high value)
+zinit ice src"shell/key-bindings.zsh"
 zinit light junegunn/fzf
 zinit light Aloxaf/fzf-tab
 
