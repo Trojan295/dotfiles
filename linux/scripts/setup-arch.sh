@@ -169,6 +169,39 @@ install_aur() {
   print_success "AUR packages installed"
 }
 
+install_sddm() {
+  print_header "Setting up SDDM login screen (SilentSDDM + Kanagawa)"
+  local repo_root
+  repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
+  local theme_dir="/usr/share/sddm/themes/silent"
+
+  yay -S --needed --noconfirm sddm-silent-theme-git qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg || {
+    print_error "Failed to install SilentSDDM theme"
+    return 1
+  }
+
+  sudo mkdir -p "$theme_dir/configs"
+  sudo cp "$repo_root/linux/etc/sddm/configs/kanagawa.conf" "$theme_dir/configs/kanagawa.conf"
+  sudo mkdir -p "$theme_dir/backgrounds"
+  sudo cp "$repo_root/linux/etc/sddm/backgrounds/background.png" "$theme_dir/backgrounds/background.png"
+  sudo sed -i "s|^ConfigFile=.*|ConfigFile=configs/kanagawa.conf|" "$theme_dir/metadata.desktop"
+
+  sudo tee /etc/sddm.conf > /dev/null << 'SDDMEOF'
+[General]
+InputMethod=qtvirtualkeyboard
+GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+
+[Theme]
+Current=silent
+
+[Autologin]
+Session=hyprland
+SDDMEOF
+
+  print_success "SDDM configured with Kanagawa theme"
+  print_info "Test with: cd $theme_dir && sudo ./test.sh"
+}
+
 show_menu() {
   echo ""
   print_header "Select packages to install"
@@ -178,6 +211,7 @@ show_menu() {
   echo "  3) [${devtools:- ]} DEV TOOLS - go, kubectl, kubectx, kubens, kind, helm, aws-cli..."
   echo "  4) [${fonts:- ]} FONTS       - ttf-jetbrains-mono, ttf-nerd-fonts..."
   echo "  5) [${aur:- ]} AUR          - opencode-bin..."
+  echo "  6) [${sddm:- ]} SDDM        - SilentSDDM theme with Kanagawa (requires sudo)"
   echo ""
   echo "  a) Install ALL"
   echo "  q) Quit"
@@ -199,6 +233,7 @@ main() {
   devtools=""
   fonts=""
   aur=""
+  sddm=""
 
   while true; do
     show_menu
@@ -210,12 +245,14 @@ main() {
     3) toggle devtools ;;
     4) toggle fonts ;;
     5) toggle aur ;;
+    6) toggle sddm ;;
     a | A)
       base="x"
       desktop="x"
       devtools="x"
       fonts="x"
       aur="x"
+      sddm="x"
       ;;
     q | Q) exit 0 ;;
     *)
@@ -228,7 +265,7 @@ main() {
       show_menu
     fi
 
-    if [[ "$base" == "x" ]] || [[ "$desktop" == "x" ]] || [[ "$devtools" == "x" ]] || [[ "$fonts" == "x" ]] || [[ "$aur" == "x" ]]; then
+    if [[ "$base" == "x" ]] || [[ "$desktop" == "x" ]] || [[ "$devtools" == "x" ]] || [[ "$fonts" == "x" ]] || [[ "$aur" == "x" ]] || [[ "$sddm" == "x" ]]; then
       read -p "Ready to install? [y/n]: " confirm_choice
       case $confirm_choice in
       y | Y) break ;;
@@ -245,6 +282,7 @@ main() {
   if [[ "$devtools" == "x" ]]; then install_devtools; fi
   if [[ "$fonts" == "x" ]]; then install_fonts; fi
   if [[ "$aur" == "x" ]]; then install_aur; fi
+  if [[ "$sddm" == "x" ]]; then install_sddm; fi
 
   print_header "Installation complete!"
   print_success "Done!"

@@ -1,0 +1,4 @@
+import = ["~/.config/alacritty/alacritty.toml"]
+
+[window]
+option_as_alt = "OnlyLeft"

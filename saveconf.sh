@@ -1,26 +1,38 @@
 #!/bin/bash
 
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+detect_os() {
+  case "$(uname -s)" in
+    Linux)  echo "linux" ;;
+    Darwin) echo "macos" ;;
+    *)      echo "unknown" ;;
+  esac
+}
+
 save() {
-  if [ -z "$1" ]; then
+  local base="$1"
+  local path="$2"
+
+  if [ -z "$path" ]; then
     echo "Missing path to save"
     return 1
   fi
 
-  local src="$HOME/$1"
-  local dst="home-configs/$1"
+  local src="$HOME/$path"
+  local dst="$REPO_ROOT/$base/$path"
 
-  # Check if source exists
   if [ ! -e "$src" ]; then
     echo "Error: Source $src does not exist"
     return 1
   fi
 
-  echo "Saving $1"
+  echo "Saving $path (to $base)"
 
-  # Create parent directory
   mkdir -p "$(dirname "$dst")"
 
-  # Copy files properly handling both directories and files
   if [ -d "$src" ]; then
     if [ ! -d "$dst" ]; then
       mkdir -p "$dst"
@@ -29,32 +41,32 @@ save() {
   else
     cp "$src" "$dst"
   fi
-
-  if [ $? -eq 0 ]; then
-    echo "Successfully saved $1"
-  else
-    echo "Failed to save $1"
-    return 1
-  fi
 }
 
-read -p "Are you sure you want to save configs? This will overwrite files in the repo. (y/n)? " choice
+OS=$(detect_os)
+
+if [ "$OS" = "unknown" ]; then
+  echo "Unsupported OS"
+  exit 1
+fi
+
+read -p "Save dotfiles from $OS to repo? This will overwrite files in the repo. (y/n)? " choice
 case "$choice" in
-y | Y) ;;
-n | N)
-  echo "Operation cancelled"
-  exit 1
-  ;;
-*)
-  echo "Invalid response"
-  exit 1
-  ;;
+  y | Y) ;;
+  n | N) echo "Cancelled"; exit 1 ;;
+  *)     echo "Invalid response"; exit 1 ;;
 esac
 
-echo "Saving dotfiles..."
+echo "Saving common configs..."
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  save "common" "$f" || echo "Warning: Failed to save $f"
+done < "$REPO_ROOT/files.common"
 
-for f in $(cat files); do
-  save "$f" || echo "Warning: Failed to save $f"
-done
+echo "Saving $OS configs..."
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  save "$OS" "$f" || echo "Warning: Failed to save $f"
+done < "$REPO_ROOT/files.$OS"
 
 echo "Done"

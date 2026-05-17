@@ -68,7 +68,11 @@ add_path_if_exists "$HOME/.pub-cache/bin"
 add_path_if_exists "$HOME/.mix/escripts"
 add_path_if_exists "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 
-export ANDROID_HOME="$HOME/Android/Sdk"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+else
+  export ANDROID_HOME="$HOME/Android/Sdk"
+fi
 add_path_if_exists "$ANDROID_HOME/platform-tools"
 
 # Run compinit's full security check at most once per day; otherwise use the cached dump.

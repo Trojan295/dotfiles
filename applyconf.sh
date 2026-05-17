@@ -1,57 +1,69 @@
 #!/bin/bash
 
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+detect_os() {
+  case "$(uname -s)" in
+    Linux)  echo "linux" ;;
+    Darwin) echo "macos" ;;
+    *)      echo "unknown" ;;
+  esac
+}
+
 install() {
-  if [ -z "$1" ]; then
+  local base="$1"
+  local path="$2"
+
+  if [ -z "$path" ]; then
     echo "Missing path to install"
     return 1
   fi
 
-  local src="home-configs/$1"
-  local dst="$HOME/$1"
+  local src="$REPO_ROOT/$base/$path"
+  local dst="$HOME/$path"
 
-  # Check if source exists
   if [ ! -e "$src" ]; then
     echo "Error: Source $src does not exist"
     return 1
   fi
 
-  echo "Installing $1"
+  echo "Installing $path (from $base)"
 
-  # Create parent directory
   mkdir -p "$(dirname "$dst")"
 
-  # Copy files properly handling both directories and files
   if [ -d "$src" ]; then
     cp -r "$src/." "$dst/"
   else
     cp "$src" "$dst"
   fi
-
-  if [ $? -eq 0 ]; then
-    echo "Successfully installed $1"
-  else
-    echo "Failed to install $1"
-    return 1
-  fi
 }
 
-read -p "Are you sure you want to apply configs? This will overwrite existing files. (y/n)? " choice
+OS=$(detect_os)
+
+if [ "$OS" = "unknown" ]; then
+  echo "Unsupported OS"
+  exit 1
+fi
+
+read -p "Apply dotfiles for $OS? This will overwrite existing files. (y/n)? " choice
 case "$choice" in
-y | Y) ;;
-n | N)
-  echo "Operation cancelled"
-  exit 1
-  ;;
-*)
-  echo "Invalid response"
-  exit 1
-  ;;
+  y | Y) ;;
+  n | N) echo "Cancelled"; exit 1 ;;
+  *)     echo "Invalid response"; exit 1 ;;
 esac
 
-echo "Installing dotfiles..."
+echo "Deploying common configs..."
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  install "common" "$f" || echo "Warning: Failed to install $f"
+done < "$REPO_ROOT/files.common"
 
-for f in $(cat files); do
-  install "$f" || echo "Warning: Failed to install $f"
-done
+echo "Deploying $OS configs..."
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  install "$OS" "$f" || echo "Warning: Failed to install $f"
+done < "$REPO_ROOT/files.$OS"
 
 echo "Done"
