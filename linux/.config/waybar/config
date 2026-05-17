@@ -69,7 +69,7 @@
     "menu-actions": {
         "shutdown": "systemctl poweroff",
         "reboot": "systemctl reboot",
-        "suspend": "systemctl hybrid-sleep"
+        "suspend": "systemctl suspend"
     },
     "menu-classes": ["menu"]
   }
