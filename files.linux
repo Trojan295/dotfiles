@@ -1,3 +1,1 @@
-.config/hypr
-.config/waybar
-.config/wofi
+# No linux-specific dotfiles tracked — COSMIC is configured via GUI

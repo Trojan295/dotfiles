@@ -49,7 +49,7 @@ zinit light agkozak/zsh-z
 zinit snippet OMZP::dotenv
 zinit snippet OMZP::kubectl
 
-[[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::brew
+command -v brew &>/dev/null && zinit snippet OMZP::brew
 
 # ALWAYS LAST
 # Defer syntax highlighting until after the first prompt is rendered.
@@ -59,10 +59,10 @@ zinit snippet OMZP::kubectl
 zinit ice wait"1" lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
-[[ "$OSTYPE" != "darwin"* ]] && add_path_if_exists "/opt/nvim-linux64/bin"
 add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
+add_path_if_exists "/home/linuxbrew/.linuxbrew/bin"
 add_path_if_exists "$HOME/Development/flutter/bin"
 add_path_if_exists "$HOME/.pub-cache/bin"
 add_path_if_exists "$HOME/.mix/escripts"

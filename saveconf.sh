@@ -59,13 +59,13 @@ esac
 
 echo "Saving common configs..."
 while IFS= read -r f; do
-  [ -z "$f" ] && continue
+  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
   save "common" "$f" || echo "Warning: Failed to save $f"
 done < "$REPO_ROOT/files.common"
 
 echo "Saving $OS configs..."
 while IFS= read -r f; do
-  [ -z "$f" ] && continue
+  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
   save "$OS" "$f" || echo "Warning: Failed to save $f"
 done < "$REPO_ROOT/files.$OS"
 

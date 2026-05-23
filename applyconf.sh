@@ -56,13 +56,13 @@ esac
 
 echo "Deploying common configs..."
 while IFS= read -r f; do
-  [ -z "$f" ] && continue
+  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
   install "common" "$f" || echo "Warning: Failed to install $f"
 done < "$REPO_ROOT/files.common"
 
 echo "Deploying $OS configs..."
 while IFS= read -r f; do
-  [ -z "$f" ] && continue
+  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
   install "$OS" "$f" || echo "Warning: Failed to install $f"
 done < "$REPO_ROOT/files.$OS"
 
