@@ -34,13 +34,19 @@ zinit ice wait"1"
 zinit light zsh-users/zsh-completions
 
 # Fuzzy finder (high value)
-zinit ice src"shell/key-bindings.zsh"
 zinit light junegunn/fzf
 zinit light Aloxaf/fzf-tab
 
 # Git + history
 zinit light mdumitru/git-aliases
 zinit light agkozak/zsh-z
+
+if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+elif command -v brew &>/dev/null; then
+  FZF_SHARE="$(brew --prefix)/share/fzf"
+  [[ -f "$FZF_SHARE/key-bindings.zsh" ]] && source "$FZF_SHARE/key-bindings.zsh"
+fi
 
 # Optional: modern history
 # zinit light atuinsh/atuin
@@ -50,6 +56,7 @@ zinit snippet OMZP::dotenv
 zinit snippet OMZP::kubectl
 
 command -v brew &>/dev/null && zinit snippet OMZP::brew
+command -v apt &>/dev/null && zinit snippet OMZP::debian
 
 # ALWAYS LAST
 # Defer syntax highlighting until after the first prompt is rendered.
