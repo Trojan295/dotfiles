@@ -80,7 +80,6 @@ install_base() {
     zsh
     fzf
     tmux
-    neovim
     zoxide
     git
     git-delta
@@ -110,6 +109,7 @@ install_devtools() {
   apt_install "${apt_packages[@]}"
 
   local brew_packages=(
+    neovim
     kubectl
     helm
     kind
