@@ -1,6 +1,5 @@
 .config/alacritty
-.config/tmux/tmux.conf
-.config/tmux-powerline
+.config/zellij
 .zshrc
 .gitconfig
 .gitconfig-cast

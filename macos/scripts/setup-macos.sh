@@ -12,7 +12,7 @@ echo "Installing packages..."
 brew install \
     zsh \
     fzf \
-    tmux \
+    zellij \
     neovim \
     zoxide \
     git \
@@ -25,11 +25,9 @@ brew install \
     kubectx \
     helm \
     fnm \
-    font-jetbrains-mono-nerd-font
-
-echo "Installing tmux plugin manager..."
-if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
-fi
+    font-jetbrains-mono-nerd-font \
+    atuin \
+    eza \
+    lazygit
 
 echo "Done. Run ./applyconf.sh to deploy configs."

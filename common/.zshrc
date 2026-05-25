@@ -26,6 +26,8 @@ zinit ice depth"1"
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
+
+
 # Core plugins (lazy)
 zinit ice wait"1"
 zinit light zsh-users/zsh-autosuggestions
@@ -49,7 +51,6 @@ elif command -v brew &>/dev/null; then
 fi
 
 # Optional: modern history
-# zinit light atuinsh/atuin
 
 # OMZ snippets
 zinit snippet OMZP::dotenv
@@ -93,6 +94,12 @@ fi
 zinit cdreplay -q
 
 eval "$(zoxide init zsh --cmd cd)"
+
+command -v atuin &>/dev/null && eval "$(atuin init zsh)"
+
+alias ls='eza --icons'
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
 
 
 zstyle ':completion:*' menu select
@@ -149,8 +156,8 @@ if [[ -d "$FNM_PATH" ]]; then
   unset _cmd
 fi
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  tmux
+if command -v zellij &> /dev/null && [ -n "$PS1" ] && [ -z "$ZELLIJ" ]; then
+  zellij
 fi
 
 

@@ -79,7 +79,6 @@ install_base() {
   local packages=(
     zsh
     fzf
-    tmux
     zoxide
     git
     git-delta
@@ -88,6 +87,15 @@ install_base() {
     wget
   )
   apt_install "${packages[@]}"
+
+  check_brew
+  local brew_packages=(
+    zellij
+    eza
+    atuin
+    lazygit
+  )
+  brew_install "${brew_packages[@]}"
 }
 
 install_desktop() {
@@ -145,38 +153,11 @@ install_brew_extras() {
   print_success "Brew extras installed"
 }
 
-install_tmux_plugins() {
-  print_header "Installing TMUX plugins (tpm)"
-  local tpm_dir="$HOME/.tmux/plugins/tpm"
-  if [ ! -d "$tpm_dir" ]; then
-    print_info "Installing tpm (tmux plugin manager)..."
-    git clone https://github.com/tmux-plugins/tpm "$tpm_dir" || {
-      print_error "Failed to clone tpm"
-      return 1
-    }
-    print_success "tpm installed"
-  else
-    print_info "tpm already installed, updating..."
-    git -C "$tpm_dir" pull || true
-  fi
-
-  if [ -f "$HOME/.config/tmux/tmux.conf" ]; then
-    print_info "Installing tmux plugins..."
-    tmux new-session -d -s __tpm_install \; source-file "$HOME/.config/tmux/tmux.conf" \; run-shell "$tpm_dir/bin/install_plugins" \; kill-session -t __tpm_install || {
-      print_error "Failed to install some tmux plugins"
-      return 1
-    }
-    print_success "tmux plugins installed"
-  else
-    print_info "tmux.conf not found, skipping plugin installation"
-  fi
-}
-
 show_menu() {
   echo ""
   print_header "Select packages to install"
   echo ""
-  echo "  1) [${base:- }] BASE         - zsh, fzf, tmux, neovim, zoxide, git..."
+  echo "  1) [${base:- }] BASE         - zsh, fzf, zellij, neovim, zoxide, git..."
   echo "  2) [${desktop:- }] DESKTOP    - alacritty..."
   echo "  3) [${devtools:- }] DEV TOOLS - go, kubectl, kubectx, helm, kind, awscli, fnm..."
   echo "  4) [${fonts:- }] FONTS       - fonts-jetbrains-mono..."
@@ -242,7 +223,6 @@ main() {
 
   if [[ "$base" == "x" ]]; then
     install_base
-    install_tmux_plugins
   fi
   if [[ "$desktop" == "x" ]]; then install_desktop; fi
   if [[ "$devtools" == "x" ]]; then install_devtools; fi
