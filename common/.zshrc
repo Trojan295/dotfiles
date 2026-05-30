@@ -156,6 +156,19 @@ if [[ -d "$FNM_PATH" ]]; then
   unset _cmd
 fi
 
+if [[ -n "$ZELLIJ" ]]; then
+  _zj_tab_preexec() {
+    local cmd="${3:-$1}"
+    cmd="${cmd[(w)0]}"
+    [[ -n "$cmd" ]] && zellij action rename-tab "$cmd"
+  }
+  _zj_tab_precmd() {
+    zellij action rename-tab "zsh"
+  }
+  add-zsh-hook preexec _zj_tab_preexec
+  add-zsh-hook precmd _zj_tab_precmd
+fi
+
 if command -v zellij &> /dev/null && [ -n "$PS1" ] && [ -z "$ZELLIJ" ]; then
   zellij
 fi

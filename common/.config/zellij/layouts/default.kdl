@@ -1,7 +1,7 @@
 layout {
     default_tab_template {
         children
-                pane size=1 borderless=true {
+        pane size=1 borderless=true {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
                 format_left   "{mode}"
                 format_center "{tabs}"
@@ -16,8 +16,10 @@ layout {
                 mode_normal  "#[bg=blue] "
                 mode_tmux    "#[bg=#ffc387] "
 
-                tab_normal   "#[fg=#6C7086] {name} "
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+                tab_normal   "#[fg=#6C7086] {index} {name} "
+                tab_active   "#[fg=#9399B2,bold,italic] {index} {name} "
+
+                tab_separator "#[fg=#6C7086] │ "
 
                 command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
                 command_git_branch_format      "#[fg=blue] {stdout} "
