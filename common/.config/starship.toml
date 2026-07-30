@@ -59,6 +59,10 @@ disabled = false
 symbol = "☸ "
 format = '[ $symbol$context( \($namespace\)) ](fg:#957FB8)'
 
+[[kubernetes.contexts]]
+context_pattern = "(.{19}).{2,}"
+context_alias = "$1…"
+
 [cmd_duration]
 min_time = 2_000
 format = "[ 󱎫 $duration ](fg:#FFA066)"
