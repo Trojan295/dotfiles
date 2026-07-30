@@ -90,10 +90,10 @@ install_base() {
 
   check_brew
   local brew_packages=(
-    zellij
     eza
     atuin
     lazygit
+    starship
   )
   brew_install "${brew_packages[@]}"
 }
@@ -104,6 +104,8 @@ install_desktop() {
     alacritty
   )
   apt_install "${packages[@]}"
+  check_brew
+  brew_install ghostty
   print_success "Desktop packages installed"
 }
 
@@ -157,8 +159,8 @@ show_menu() {
   echo ""
   print_header "Select packages to install"
   echo ""
-  echo "  1) [${base:- }] BASE         - zsh, fzf, zellij, neovim, zoxide, git..."
-  echo "  2) [${desktop:- }] DESKTOP    - alacritty..."
+  echo "  1) [${base:- }] BASE         - zsh, fzf, starship, neovim, zoxide, git..."
+  echo "  2) [${desktop:- }] DESKTOP    - alacritty, ghostty..."
   echo "  3) [${devtools:- }] DEV TOOLS - go, kubectl, kubectx, helm, kind, awscli, fnm..."
   echo "  4) [${fonts:- }] FONTS       - fonts-jetbrains-mono..."
   echo "  5) [${brew_extras:- }] BREW EXTRAS - opencode..."

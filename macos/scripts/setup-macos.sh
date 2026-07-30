@@ -12,7 +12,6 @@ echo "Installing packages..."
 brew install \
     zsh \
     fzf \
-    zellij \
     neovim \
     zoxide \
     git \
@@ -28,6 +27,8 @@ brew install \
     font-jetbrains-mono-nerd-font \
     atuin \
     eza \
-    lazygit
+    lazygit \
+    starship \
+    ghostty
 
 echo "Done. Run ./applyconf.sh to deploy configs."

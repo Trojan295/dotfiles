@@ -22,12 +22,6 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-zinit ice depth"1"
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
-
-
-
 # Core plugins (lazy)
 zinit ice wait"1"
 zinit light zsh-users/zsh-autosuggestions
@@ -97,6 +91,8 @@ eval "$(zoxide init zsh --cmd cd)"
 
 command -v atuin &>/dev/null && eval "$(atuin init zsh)"
 
+command -v starship &>/dev/null && eval "$(starship init zsh)"
+
 alias ls='eza --icons'
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
@@ -155,24 +151,6 @@ if [[ -d "$FNM_PATH" ]]; then
   done
   unset _cmd
 fi
-
-if [[ -n "$ZELLIJ" ]]; then
-  _zj_tab_preexec() {
-    local cmd="${3:-$1}"
-    cmd="${cmd[(w)0]}"
-    [[ -n "$cmd" ]] && zellij action rename-tab "$cmd"
-  }
-  _zj_tab_precmd() {
-    zellij action rename-tab "zsh"
-  }
-  add-zsh-hook preexec _zj_tab_preexec
-  add-zsh-hook precmd _zj_tab_precmd
-fi
-
-if command -v zellij &> /dev/null && [ -n "$PS1" ] && [ -z "$ZELLIJ" ]; then
-  zellij
-fi
-
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall

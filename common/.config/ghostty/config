@@ -1,0 +1,13 @@
+# Font (from your alacritty [font])
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 20
+
+# No title bar / borders (matches decorations = "None")
+window-decoration = false
+
+# Same palette as your alacritty config
+theme = Kanagawa Wave
+
+# Alt+arrow word movement (matches your keyboard.bindings)
+keybind = alt+right=text:\x1bf
+keybind = alt+left=text:\x1bb
