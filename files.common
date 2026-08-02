@@ -1,6 +1,5 @@
 .config/alacritty
 .config/ghostty
-.config/starship.toml
 .zshrc
 .gitconfig
 .gitconfig-cast

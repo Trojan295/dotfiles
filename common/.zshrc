@@ -91,7 +91,23 @@ eval "$(zoxide init zsh --cmd cd)"
 
 command -v atuin &>/dev/null && eval "$(atuin init zsh)"
 
-command -v starship &>/dev/null && eval "$(starship init zsh)"
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+PURE_GIT_PULL=0
+PURE_CMD_MAX_EXEC_TIME=5
+PURE_PROMPT_SYMBOL='❯'
+
+zstyle ':prompt:pure:path'        color '#7E9CD8'
+zstyle ':prompt:pure:git:branch'  color '#54546D'
+zstyle ':prompt:pure:git:dirty'   color '#E6C384'
+zstyle ':prompt:pure:git:arrow'   color '#7AA89F'
+zstyle ':prompt:pure:git:stash'   color '#E6C384'
+zstyle ':prompt:pure:git:action'  show   yes
+zstyle ':prompt:pure:git:stash'   show   yes
+zstyle ':prompt:pure:prompt:success' color '#E6C384'
+zstyle ':prompt:pure:prompt:error'   color '#D27E99'
+zstyle ':prompt:pure:execution_time' color '#54546D'
 
 alias ls='eza --icons'
 alias ll='eza -l --icons --git'
