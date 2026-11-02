@@ -18,6 +18,7 @@ brew install \
     git-delta \
     git-lfs \
     curl \
+    direnv \
     wget \
     go \
     kubectl \
@@ -28,7 +29,6 @@ brew install \
     atuin \
     eza \
     lazygit \
-    starship \
     ghostty
 
 echo "Done. Run ./applyconf.sh to deploy configs."

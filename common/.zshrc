@@ -1,8 +1,14 @@
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-setopt SHARE_HISTORY
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
 export EDITOR=nvim
+
+# Per-device profile, read from the machine-local marker (created by applyconf.sh).
+# 'core' = Go + cloud/k8s only; 'full' = adds other language tooling (flutter, Android, Dart, Elixir...).
+# A pre-set DOTFILES_PROFILE env wins (e.g. one-off `DOTFILES_PROFILE=full zsh`); otherwise read the marker.
+DOTFILES_PROFILE="${DOTFILES_PROFILE:-${$(<"$HOME/.config/dotfiles/profile" 2>/dev/null):-core}}"
+export DOTFILES_PROFILE
 
 add_path_if_exists() {
   [[ -d "$1" ]] && export PATH="$PATH:$1"
@@ -33,9 +39,8 @@ zinit light zsh-users/zsh-completions
 zinit light junegunn/fzf
 zinit light Aloxaf/fzf-tab
 
-# Git + history
+# Git aliases
 zinit light mdumitru/git-aliases
-zinit light agkozak/zsh-z
 
 if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
   source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -44,10 +49,7 @@ elif command -v brew &>/dev/null; then
   [[ -f "$FZF_SHARE/key-bindings.zsh" ]] && source "$FZF_SHARE/key-bindings.zsh"
 fi
 
-# Optional: modern history
-
 # OMZ snippets
-zinit snippet OMZP::dotenv
 zinit snippet OMZP::kubectl
 
 command -v brew &>/dev/null && zinit snippet OMZP::brew
@@ -61,21 +63,28 @@ command -v apt &>/dev/null && zinit snippet OMZP::debian
 zinit ice wait"1" lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
+# Go + cloud/k8s tooling — all profiles
 add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
 add_path_if_exists "/home/linuxbrew/.linuxbrew/bin"
-add_path_if_exists "$HOME/Development/flutter/bin"
-add_path_if_exists "$HOME/.pub-cache/bin"
-add_path_if_exists "$HOME/.mix/escripts"
-add_path_if_exists "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-else
-  export ANDROID_HOME="$HOME/Android/Sdk"
+# Extra language tooling — 'full' profile only
+if [[ "$DOTFILES_PROFILE" == "full" ]]; then
+  add_path_if_exists "$HOME/Development/flutter/bin"
+  add_path_if_exists "$HOME/.pub-cache/bin"
+  add_path_if_exists "$HOME/.mix/escripts"
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+  else
+    export ANDROID_HOME="$HOME/Android/Sdk"
+  fi
+  add_path_if_exists "$ANDROID_HOME/platform-tools"
 fi
-add_path_if_exists "$ANDROID_HOME/platform-tools"
+
+# Deduplicate PATH (keep first occurrence of each entry)
+typeset -U path PATH
 
 # Run compinit's full security check at most once per day; otherwise use the cached dump.
 autoload -Uz compinit
@@ -90,6 +99,9 @@ zinit cdreplay -q
 eval "$(zoxide init zsh --cmd cd)"
 
 command -v atuin &>/dev/null && eval "$(atuin init zsh)"
+
+# direnv — replaces the OMZ dotenv plugin, which source()s .env files as shell code.
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
@@ -109,9 +121,9 @@ zstyle ':prompt:pure:prompt:success' color '#E6C384'
 zstyle ':prompt:pure:prompt:error'   color '#D27E99'
 zstyle ':prompt:pure:execution_time' color '#54546D'
 
-alias ls='eza --icons'
-alias ll='eza -l --icons --git'
-alias la='eza -la --icons --git'
+alias ls='eza --icons auto'
+alias ll='eza -l --icons auto --git'
+alias la='eza -la --icons auto --git'
 
 
 zstyle ':completion:*' menu select
@@ -135,8 +147,16 @@ _cache_completion() {
   bin=$(command -v "$cmd") || return
   mkdir -p "$HOME/.zsh_completion_cache"
   # Regenerate if cache is missing, the binary is newer than the cache, or the cache is >30 days old.
-  if [[ ! -f "$cache" ]] || [[ "$bin" -nt "$cache" ]] || [[ -n $(find "$cache" -mtime +30 2>/dev/null) ]]; then
+  if [[ ! -f "$cache" ]] || [[ "$bin" -nt "$cache" ]]; then
     "$cmd" "$@" > "$cache" 2>/dev/null
+  else
+    local age
+    if [[ "$OSTYPE" == darwin* ]]; then
+      age=$(( $(date +%s) - $(stat -f %m "$cache") ))
+    else
+      age=$(( $(date +%s) - $(stat -c %Y "$cache") ))
+    fi
+    (( age > 2592000 )) && "$cmd" "$@" > "$cache" 2>/dev/null
   fi
   [[ -s "$cache" ]] && source "$cache"
 }
@@ -168,15 +188,15 @@ if [[ -d "$FNM_PATH" ]]; then
   unset _cmd
 fi
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f "$HOME/.config/.dart-cli-completion/zsh-config.zsh" ]] && source "$HOME/.config/.dart-cli-completion/zsh-config.zsh"
-## [/Completion]
-
+# Dart CLI completions — 'full' profile only
+if [[ "$DOTFILES_PROFILE" == "full" ]] && [[ -f "$HOME/.config/.dart-cli-completion/zsh-config.zsh" ]]; then
+  source "$HOME/.config/.dart-cli-completion/zsh-config.zsh"
+fi
 
 # opencode
 [[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
+# Machine-local overrides and secrets — keep this file out of the dotfiles repo.
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi

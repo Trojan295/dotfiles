@@ -12,6 +12,16 @@ detect_os() {
   esac
 }
 
+resolve_profile() {
+  # Priority: $DOTFILES_PROFILE env > ~/.config/dotfiles/profile marker.
+  # Never creates the marker (that's applyconf's job); empty output = skip profile layer.
+  if [ -n "${DOTFILES_PROFILE:-}" ]; then
+    echo "$DOTFILES_PROFILE"
+  elif [ -f "$HOME/.config/dotfiles/profile" ]; then
+    cat "$HOME/.config/dotfiles/profile"
+  fi
+}
+
 save() {
   local base="$1"
   local path="$2"
@@ -43,6 +53,19 @@ save() {
   fi
 }
 
+save_manifest() {
+  local base="$1"
+  local manifest="$2"
+
+  echo "Saving $base configs..."
+  while IFS= read -r f; do
+    if [ -z "$f" ] || [[ "$f" == \#* ]]; then
+      continue
+    fi
+    save "$base" "$f" || echo "Warning: Failed to save $f"
+  done < "$REPO_ROOT/$manifest"
+}
+
 OS=$(detect_os)
 
 if [ "$OS" = "unknown" ]; then
@@ -50,23 +73,21 @@ if [ "$OS" = "unknown" ]; then
   exit 1
 fi
 
-read -p "Save dotfiles from $OS to repo? This will overwrite files in the repo. (y/n)? " choice
-case "$choice" in
-  y | Y) ;;
-  n | N) echo "Cancelled"; exit 1 ;;
-  *)     echo "Invalid response"; exit 1 ;;
-esac
+PROFILE=$(resolve_profile)
 
-echo "Saving common configs..."
-while IFS= read -r f; do
-  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
-  save "common" "$f" || echo "Warning: Failed to save $f"
-done < "$REPO_ROOT/files.common"
+if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
+  read -p "Save dotfiles from $OS to repo? This will overwrite files in the repo. (y/n)? " choice
+  case "$choice" in
+    y | Y) ;;
+    *) echo "Cancelled"; exit 1 ;;
+  esac
+fi
 
-echo "Saving $OS configs..."
-while IFS= read -r f; do
-  [ -z "$f" ] || [[ "$f" == \#* ]] && continue
-  save "$OS" "$f" || echo "Warning: Failed to save $f"
-done < "$REPO_ROOT/files.$OS"
+save_manifest "common" "files.common"
+save_manifest "$OS" "files.$OS"
+
+if [ -n "$PROFILE" ] && [ -f "$REPO_ROOT/files.profile-$PROFILE" ]; then
+  save_manifest "profiles/$PROFILE" "files.profile-$PROFILE"
+fi
 
 echo "Done"

@@ -93,7 +93,7 @@ install_base() {
     eza
     atuin
     lazygit
-    starship
+    direnv
   )
   brew_install "${brew_packages[@]}"
 }

@@ -1,5 +1,4 @@
 [core]
-	excludeFiles = '~/.gitignore'
 	excludesFile = ~/.gitignore
 	pager = delta
 [user]
@@ -26,9 +25,20 @@
 [diff]
   colorMoved = default
 
+[init]
+  defaultBranch = main
+
+[pull]
+  ff = only
+
+[rebase]
+  autoSquash = true
+
+[fetch]
+  prune = true
+
 [url "git@github.com:castai/"]
   insteadOf = https://github.com/castai/
 
 [includeIf "gitdir:~/Projekty/castroot/"]
   path = ~/.gitconfig-cast
-
