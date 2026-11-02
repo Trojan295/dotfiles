@@ -1,4 +1,0 @@
-# Profile: core — Go + cloud/k8s focus.
-# Files listed here are installed (apply) / collected (save) relative to profiles/core/.
-# The .zshrc in common/ gates most language tooling via $DOTFILES_PROFILE;
-# list any profile-specific dotfiles here (e.g. a Go-only editor config).

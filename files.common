@@ -1,5 +1,5 @@
-.config/alacritty
 .config/ghostty
+.config/tmux/tmux.conf
 .zshrc
 .zprofile
 .gitconfig

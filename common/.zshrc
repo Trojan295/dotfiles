@@ -5,9 +5,9 @@ setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
 export EDITOR=nvim
 
 # Per-device profile, read from the machine-local marker (created by applyconf.sh).
-# 'core' = Go + cloud/k8s only; 'full' = adds other language tooling (flutter, Android, Dart, Elixir...).
-# A pre-set DOTFILES_PROFILE env wins (e.g. one-off `DOTFILES_PROFILE=full zsh`); otherwise read the marker.
-DOTFILES_PROFILE="${DOTFILES_PROFILE:-${$(<"$HOME/.config/dotfiles/profile" 2>/dev/null):-core}}"
+# 'work' = work machine (macOS): Go + cloud/k8s only; 'personal' = personal laptop (Linux): adds other language tooling (flutter, Android, Dart, Elixir...).
+# A pre-set DOTFILES_PROFILE env wins (e.g. one-off `DOTFILES_PROFILE=personal zsh`); otherwise read the marker.
+DOTFILES_PROFILE="${DOTFILES_PROFILE:-${$(<"$HOME/.config/dotfiles/profile" 2>/dev/null):-work}}"
 export DOTFILES_PROFILE
 
 add_path_if_exists() {
@@ -69,8 +69,8 @@ add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
 add_path_if_exists "/home/linuxbrew/.linuxbrew/bin"
 
-# Extra language tooling — 'full' profile only
-if [[ "$DOTFILES_PROFILE" == "full" ]]; then
+# Extra language tooling — 'personal' profile only
+if [[ "$DOTFILES_PROFILE" == "personal" ]]; then
   add_path_if_exists "$HOME/Development/flutter/bin"
   add_path_if_exists "$HOME/.pub-cache/bin"
   add_path_if_exists "$HOME/.mix/escripts"
@@ -188,8 +188,8 @@ if [[ -d "$FNM_PATH" ]]; then
   unset _cmd
 fi
 
-# Dart CLI completions — 'full' profile only
-if [[ "$DOTFILES_PROFILE" == "full" ]] && [[ -f "$HOME/.config/.dart-cli-completion/zsh-config.zsh" ]]; then
+# Dart CLI completions — 'personal' profile only
+if [[ "$DOTFILES_PROFILE" == "personal" ]] && [[ -f "$HOME/.config/.dart-cli-completion/zsh-config.zsh" ]]; then
   source "$HOME/.config/.dart-cli-completion/zsh-config.zsh"
 fi
 

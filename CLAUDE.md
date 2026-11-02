@@ -14,9 +14,9 @@ Cross-platform dotfiles for Pop!_OS (Linux) and macOS. Owner: Damian Czaja.
 
 ## Profiles (per-device tweaks)
 
-- The active profile is stored in `~/.config/dotfiles/profile` (one word, e.g. `core` or `full`) — machine-local, never committed
-- `applyconf.sh` creates the marker on first run (prompts, default `core`); override with `DOTFILES_PROFILE=name` or `DOTFILES_ASSUME_YES=1` for scripted runs
-- `core` = Go + cloud/k8s tooling only; `full` = adds flutter / Android / Dart / Elixir tooling (gated in `common/.zshrc` via `$DOTFILES_PROFILE`)
+- The active profile is stored in `~/.config/dotfiles/profile` (one word: `work` or `personal`) — machine-local, never committed
+- `applyconf.sh` creates the marker on first run (prompts, default `work`); override with `DOTFILES_PROFILE=name` or `DOTFILES_ASSUME_YES=1` for scripted runs
+- `work` = work machine (macOS): Go + cloud/k8s tooling only; `personal` = personal laptop (Linux): adds flutter / Android / Dart / Elixir tooling (gated in `common/.zshrc` via `$DOTFILES_PROFILE`)
 - Profile-specific *files* go in `profiles/<name>/` and are listed in `files.profile-<name>` (currently empty manifests — add files as needed)
 - `~/.zshrc.local` is sourced at the end of `~/.zshrc` — use it for machine-local zsh overrides and secrets that must not be synced
 - Env var loading: `direnv` (hook in `.zshrc`) — NOT the OMZ dotenv plugin; `.envrc` files should be committed per-repo

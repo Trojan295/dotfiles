@@ -100,10 +100,6 @@ install_base() {
 
 install_desktop() {
   print_header "Installing DESKTOP packages"
-  local packages=(
-    alacritty
-  )
-  apt_install "${packages[@]}"
   check_brew
   brew_install ghostty
   print_success "Desktop packages installed"

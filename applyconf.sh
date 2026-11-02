@@ -19,8 +19,8 @@ resolve_profile() {
     profile="$(cat "$HOME/.config/dotfiles/profile")"
   fi
   if [ -z "$profile" ]; then
-    read -p "Create profile marker ~/.config/dotfiles/profile (core|full) [core]: " profile
-    profile="${profile:-core}"
+    read -p "Create profile marker ~/.config/dotfiles/profile (work|personal) [work]: " profile
+    profile="${profile:-work}"
   fi
   mkdir -p "$HOME/.config/dotfiles"
   printf '%s\n' "$profile" > "$HOME/.config/dotfiles/profile"
