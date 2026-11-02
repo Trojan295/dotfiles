@@ -1,7 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Setting up macOS dotfiles..."
+# Work profile installer (macOS) — brew packages. Run from the repo root:
+#   ./profiles/work/setup-work.sh
+
+echo "Setting up work profile (macOS)..."
 
 if ! command -v brew &>/dev/null; then
     echo "Homebrew not found. Install from https://brew.sh"

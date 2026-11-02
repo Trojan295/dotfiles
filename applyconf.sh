@@ -4,14 +4,6 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-detect_os() {
-  case "$(uname -s)" in
-    Linux)  echo "linux" ;;
-    Darwin) echo "macos" ;;
-    *)      echo "unknown" ;;
-  esac
-}
-
 resolve_profile() {
   # Priority: $DOTFILES_PROFILE env > ~/.config/dotfiles/profile marker > first-run prompt
   local profile="${DOTFILES_PROFILE:-}"
@@ -68,17 +60,10 @@ deploy_manifest() {
   done < "$REPO_ROOT/$manifest"
 }
 
-OS=$(detect_os)
-
-if [ "$OS" = "unknown" ]; then
-  echo "Unsupported OS"
-  exit 1
-fi
-
 PROFILE=$(resolve_profile)
 
 if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
-  read -p "Apply dotfiles for $OS (profile: $PROFILE)? This will overwrite existing files. (y/n)? " choice
+  read -p "Apply dotfiles (profile: $PROFILE)? This will overwrite existing files. (y/n)? " choice
   case "$choice" in
     y | Y) ;;
     *) echo "Cancelled"; exit 1 ;;
@@ -86,7 +71,6 @@ if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
 fi
 
 deploy_manifest "common" "files.common"
-deploy_manifest "$OS" "files.$OS"
 
 if [ -f "$REPO_ROOT/files.profile-$PROFILE" ]; then
   deploy_manifest "profiles/$PROFILE" "files.profile-$PROFILE"

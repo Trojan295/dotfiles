@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Personal profile installer (Pop!_OS / Linux) — apt + brew fallback.
+# Run from the repo root: ./profiles/personal/setup-personal.sh
+
 set -e
 
 RED='\033[0;31m'

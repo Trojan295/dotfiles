@@ -1,4 +1,3 @@
 # Profile: work — work machine (macOS), Go + cloud/k8s focus.
 # Files listed here are installed (apply) / collected (save) relative to profiles/work/.
-# The .zshrc in common/ gates language tooling via $DOTFILES_PROFILE;
-# list any profile-specific dotfiles here (e.g. a work-only gitconfig).
+.gitconfig-cast

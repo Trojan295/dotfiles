@@ -1,24 +1,32 @@
 # Dotfiles
 
-Cross-platform dotfiles for macOS (work) and Linux (personal). Owner: Damian Czaja.
+Dotfiles for Damian's machines. Common configs apply to every setup; per-device tweaks
+live in profiles and are installed only when a profile is selected.
+
+| Machine | Profile | OS |
+|---|---|---|
+| Work | `work` | macOS |
+| Personal | `personal` | Linux |
 
 ## What's inside
 
-- **Shell**: zsh (Zinit, Pure prompt), [ghostty] terminal, tmux with a minimal status bar
+- **Shell**: zsh (Zinit, Pure prompt), ghostty terminal, tmux with minimal status bar
 - **Dev/cloud**: Go, kubectl, kubectx, helm, kind, castctl, k9s, lazygit, git-delta
 - **Productivity**: direnv, atuin history, zoxide `cd`, fzf/fzf-tab, eza, fnm (node, lazy)
-- **Optional (personal machines)**: flutter, Android SDK, Dart, Elixir — gated by profile
+- **Personal-only**: flutter, Android SDK, Dart, Elixir — gated by the `personal` profile
 
 ## Layout
 
 | Path | Purpose |
 |---|---|
-| `common/` | Cross-platform configs (ghostty, tmux, zsh, git) |
-| `macos/`, `linux/` | OS-specific configs + setup scripts |
-| `profiles/` | Per-device profile files (`work/`, `personal/`) |
-| `files.common` / `files.macos` / `files.linux` / `files.profile-<name>` | Manifests listing which files are copied |
-| `applyconf.sh` | Deploy repo → `$HOME` (layers: common → OS → profile) |
-| `saveconf.sh` | Collect `$HOME` → repo (run before committing) |
+| `common/` | Configs for every setup (ghostty, tmux, zsh, git) |
+| `profiles/work/` | Work profile (macOS): setup script, work-only gitconfig |
+| `profiles/personal/` | Personal profile (Linux): setup script |
+| `servers/` | Remote server configs (not deployed by applyconf) |
+| `scripts/` | Shared setup scripts |
+| `files.common`, `files.profile-<name>` | Manifests listing which files are copied |
+| `applyconf.sh` | Deploy repo → `$HOME` (common → active profile) |
+| `saveconf.sh` | Collect `$HOME` → repo |
 
 ## Quickstart (new device)
 
@@ -28,23 +36,24 @@ cd ~/Projekty/dotfiles
 
 # install tools (or equivalent via your package manager):
 #   zsh, ghostty, tmux, direnv, fnm, atuin, eza, zoxide, fzf,
-#   git-delta, go, kubectl, kubectx, helm, kind, castctl, k9s, lazygit
-./macos/scripts/setup-macos.sh   # macOS
-./linux/scripts/setup-pop.sh     # Linux
+#   git-delta, go, kubectl, kubectx, helm, kind, k9s, lazygit
+./profiles/work/setup-work.sh          # work machine (macOS)
+./profiles/personal/setup-personal.sh  # personal laptop (Linux)
 
 ./applyconf.sh
 ```
 
-The first `applyconf.sh` run asks for the device **profile** and writes the marker
-to `~/.config/dotfiles/profile`. Start tmux and zsh and you're set.
+The first `applyconf.sh` run asks for the device **profile** (`work` or `personal`)
+and writes the marker to `~/.config/dotfiles/profile`. Start tmux and zsh and you're set.
 
-## Profiles (per-device tweaks)
+## Profiles
 
-- `work` — work machine (macOS): Go + cloud/K8s only
-- `personal` — personal laptop (Linux): adds flutter / Android / Dart / Elixir tooling
+- `work` (macOS): Go + cloud/K8s only
+- `personal` (Linux): adds flutter / Android / Dart / Elixir tooling
 
-The marker is machine-local and never committed. In `common/.zshrc`, language tooling
-is gated on `$DOTFILES_PROFILE == "personal"`, so a Go-only machine just works.
+Your machine's profile lives in `~/.config/dotfiles/profile` (machine-local, never
+committed). In `common/.zshrc`, language tooling is gated on
+`$DOTFILES_PROFILE == "personal"`, so a Go-only machine just works.
 
 ```sh
 DOTFILES_ASSUME_YES=1 ./applyconf.sh   # non-interactive apply (scripted replication)
@@ -52,8 +61,7 @@ DOTFILES_PROFILE=personal zsh          # one-off profile override for a shell
 echo work > ~/.config/dotfiles/profile # switch a machine's profile
 ```
 
-Profile-specific *files* (beyond what `.zshrc` gates) go in `profiles/<name>/` and are
-listed in `files.profile-<name>`.
+Profile-specific files go in `profiles/<name>/` and are listed in `files.profile-<name>`.
 
 ## Daily workflow
 
@@ -64,7 +72,7 @@ git pull && ./applyconf.sh   # on another device: deploy
 ```
 
 Add new config paths to the matching `files.*` manifest; `#` lines are ignored.
-The scripts are copy-based (no symlinks) and detect the OS automatically.
+The scripts are copy-based (no symlinks).
 
 ## Machine-local stuff (never committed)
 

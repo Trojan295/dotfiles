@@ -4,14 +4,6 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-detect_os() {
-  case "$(uname -s)" in
-    Linux)  echo "linux" ;;
-    Darwin) echo "macos" ;;
-    *)      echo "unknown" ;;
-  esac
-}
-
 resolve_profile() {
   # Priority: $DOTFILES_PROFILE env > ~/.config/dotfiles/profile marker.
   # Never creates the marker (that's applyconf's job); empty output = skip profile layer.
@@ -66,17 +58,10 @@ save_manifest() {
   done < "$REPO_ROOT/$manifest"
 }
 
-OS=$(detect_os)
-
-if [ "$OS" = "unknown" ]; then
-  echo "Unsupported OS"
-  exit 1
-fi
-
 PROFILE=$(resolve_profile)
 
 if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
-  read -p "Save dotfiles from $OS to repo? This will overwrite files in the repo. (y/n)? " choice
+  read -p "Save dotfiles to repo? This will overwrite files in the repo. (y/n)? " choice
   case "$choice" in
     y | Y) ;;
     *) echo "Cancelled"; exit 1 ;;
@@ -84,7 +69,6 @@ if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
 fi
 
 save_manifest "common" "files.common"
-save_manifest "$OS" "files.$OS"
 
 if [ -n "$PROFILE" ] && [ -f "$REPO_ROOT/files.profile-$PROFILE" ]; then
   save_manifest "profiles/$PROFILE" "files.profile-$PROFILE"
