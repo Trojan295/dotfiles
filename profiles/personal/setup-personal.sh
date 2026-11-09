@@ -47,6 +47,8 @@ install_base() {
   print_header "Installing BASE packages"
   local packages=(
     zsh
+    fish
+    starship
     tmux
     fzf
     zoxide
@@ -102,7 +104,7 @@ show_menu() {
   echo ""
   print_header "Select packages to install"
   echo ""
-  echo "  1) [${base:- }] BASE      - zsh, tmux, fzf, zoxide, git, delta, eza, atuin, lazygit, direnv..."
+  echo "  1) [${base:- }] BASE      - zsh, fish, starship, tmux, fzf, zoxide, git, delta, eza, atuin, lazygit, direnv..."
   echo "  2) [${desktop:- }] DESKTOP   - ghostty"
   echo "  3) [${devtools:- }] DEV TOOLS - go, neovim, kubectl, kubectx, k9s, helm, kind, aws-cli, fnm"
   echo "  4) [${fonts:- }] FONTS     - ttf-jetbrains-mono-nerd"

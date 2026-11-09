@@ -1,0 +1,44 @@
+add_newline = true
+
+format = """
+$hostname$directory$git_branch$git_state$git_status$kubernetes$status$cmd_duration
+$character"""
+
+[hostname]
+format = "[$hostname]($style) "
+style = "#D27E99"
+
+[directory]
+style = "#7E9CD8"
+truncation_length = 3
+
+[git_branch]
+format = "[$branch]($style) "
+style = "#54546D"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "#E6C384"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+stashed = "≡"
+
+[kubernetes]
+disabled = false
+format = "[⎈ $context(/$namespace)]($style) "
+style = "#7AA89F"
+
+[status]
+disabled = false
+format = "[✘ $status]($style) "
+style = "#D27E99"
+
+[cmd_duration]
+min_time = 5000
+format = "[$duration]($style) "
+style = "#54546D"
+
+[character]
+success_symbol = "[❯](#E6C384)"
+error_symbol = "[❯](#D27E99)"

@@ -14,6 +14,8 @@ fi
 echo "Installing packages..."
 brew install \
     zsh \
+    fish \
+    starship \
     fzf \
     neovim \
     zoxide \
