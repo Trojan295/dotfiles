@@ -60,6 +60,22 @@ deploy_manifest() {
   done < "$REPO_ROOT/$manifest"
 }
 
+sync_repo() {
+  local url="$1"
+  local dst="$2"
+
+  if [ ! -e "$dst" ]; then
+    echo "Cloning $url -> $dst"
+    mkdir -p "$(dirname "$dst")"
+    git clone "$url" "$dst" || echo "Warning: Failed to clone $url"
+  elif [ -d "$dst/.git" ]; then
+    echo "Updating $dst"
+    git -C "$dst" pull --ff-only || echo "Warning: Failed to update $dst"
+  else
+    echo "Warning: $dst exists and is not a git repo, skipping"
+  fi
+}
+
 PROFILE=$(resolve_profile)
 
 if [ "${DOTFILES_ASSUME_YES:-0}" != "1" ]; then
@@ -77,5 +93,7 @@ if [ -f "$REPO_ROOT/files.profile-$PROFILE" ]; then
 else
   echo "Note: no files.profile-$PROFILE manifest, skipping profile layer"
 fi
+
+sync_repo "https://github.com/Trojan295/LazyVim" "$HOME/.config/nvim"
 
 echo "Done"
