@@ -6,7 +6,7 @@ live in profiles and are installed only when a profile is selected.
 | Machine | Profile | OS |
 |---|---|---|
 | Work | `work` | macOS |
-| Personal | `personal` | Linux |
+| Personal | `personal` | CachyOS (Arch Linux) |
 
 ## What's inside
 
@@ -21,7 +21,7 @@ live in profiles and are installed only when a profile is selected.
 |---|---|
 | `common/` | Configs for every setup (ghostty, tmux, zsh, git) |
 | `profiles/work/` | Work profile (macOS): setup script, work-only gitconfig |
-| `profiles/personal/` | Personal profile (Linux): setup script |
+| `profiles/personal/` | Personal profile (CachyOS): pacman setup script |
 | `servers/` | Remote server configs (not deployed by applyconf) |
 | `scripts/` | Shared setup scripts |
 | `files.common`, `files.profile-<name>` | Manifests listing which files are copied |
@@ -38,7 +38,7 @@ cd ~/Projekty/dotfiles
 #   zsh, ghostty, tmux, direnv, fnm, atuin, eza, zoxide, fzf,
 #   git-delta, go, kubectl, kubectx, helm, kind, k9s, lazygit
 ./profiles/work/setup-work.sh          # work machine (macOS)
-./profiles/personal/setup-personal.sh  # personal laptop (Linux)
+./profiles/personal/setup-personal.sh  # personal laptop (CachyOS, pacman)
 
 ./applyconf.sh
 ```
@@ -49,7 +49,7 @@ and writes the marker to `~/.config/dotfiles/profile`. Start tmux and zsh and yo
 ## Profiles
 
 - `work` (macOS): Go + cloud/K8s only
-- `personal` (Linux): adds flutter / Android / Dart / Elixir tooling
+- `personal` (CachyOS): adds flutter / Android / Dart / Elixir tooling
 
 Your machine's profile lives in `~/.config/dotfiles/profile` (machine-local, never
 committed). In `common/.zshrc`, language tooling is gated on

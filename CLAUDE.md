@@ -8,7 +8,7 @@ Owner: Damian Czaja.
 - Configs split into `common/` (all machines) and a per-device `profiles/` layer; deployed via `applyconf.sh` / `saveconf.sh` (copy-based, no symlinks)
 - `applyconf.sh` and `saveconf.sh` deploy `common/` first, then the active profile on top (no OS detection)
 - Manifests: `files.common`, `files.profile-<name>` — update when adding new config paths; lines starting with `#` are ignored
-- Setup scripts: `profiles/work/setup-work.sh` (brew); `profiles/personal/setup-personal.sh` (apt + brew)
+- Setup scripts: `profiles/work/setup-work.sh` (brew); `profiles/personal/setup-personal.sh` (pacman)
 - Never commit secrets or credentials — `.zshrc.local`, `~/.envs`, `~/.gitlab_token`, `~/.castai-*` and other key files are machine-local, stay out of the repo
 - Never add comments to config files unless explicitly requested
 - Keep changes minimal and targeted — follow existing patterns in each file
@@ -17,7 +17,7 @@ Owner: Damian Czaja.
 
 - The active profile is stored in `~/.config/dotfiles/profile` (one word: `work` or `personal`) — machine-local, never committed
 - `applyconf.sh` creates the marker on first run (prompts, default `work`); override with `DOTFILES_PROFILE=name` or `DOTFILES_ASSUME_YES=1` for scripted runs
-- `work` (macOS): Go + cloud/k8s tooling only; `personal` (Linux): adds flutter / Android / Dart / Elixir tooling (gated in `common/.zshrc` via `$DOTFILES_PROFILE`)
+- `work` (macOS): Go + cloud/k8s tooling only; `personal` (CachyOS): adds flutter / Android / Dart / Elixir tooling (gated in `common/.zshrc` via `$DOTFILES_PROFILE`)
 - Profile-specific *files* go in `profiles/<name>/` and are listed in `files.profile-<name>` (currently: `work` ships `profiles/work/.gitconfig-cast`)
 - `~/.zshrc.local` is sourced at the end of `~/.zshrc` — use it for machine-local zsh overrides and secrets that must not be synced
 - Env var loading: `direnv` (hook in `.zshrc`) — NOT the OMZ dotenv plugin; `.envrc` files should be committed per-repo
@@ -37,7 +37,7 @@ scripts/         # Shared scripts (setup-server-zsh.sh)
 - Shell: zsh (Zinit, Pure prompt)
 - Terminal: Ghostty
 - Font: JetBrainsMono Nerd Font
-- Linux desktop: COSMIC (Wayland)
+- Linux desktop: KDE Plasma (CachyOS)
 - Keyboard: Polish (pl)
 
 ## Kanagawa Color Palette
@@ -57,5 +57,5 @@ All UI configs use these colors.
 
 ## Keybindings
 
-- **COSMIC**: Super-based — configured via COSMIC Settings
+- **KDE Plasma**: configured via System Settings
 - **Ghostty**: Ctrl+Shift+T new tab, Ctrl+Tab cycle tabs, Ctrl+Shift+O/E splits, Alt+←/→ word move

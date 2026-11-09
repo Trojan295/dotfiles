@@ -11,3 +11,5 @@ theme = Kanagawa Wave
 # Alt+arrow word movement (matches your keyboard.bindings)
 keybind = alt+right=text:\x1bf
 keybind = alt+left=text:\x1bb
+
+config-file = ?config-profile

@@ -1,3 +1,4 @@
 # Profile: personal — personal laptop (Linux), Go + cloud/k8s + other language tooling
 # (flutter, Android, Dart, Elixir, ...).
 # Files listed here are installed (apply) / collected (save) relative to profiles/personal/.
+.config/ghostty/config-profile

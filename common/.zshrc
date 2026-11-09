@@ -42,7 +42,9 @@ zinit light Aloxaf/fzf-tab
 # Git aliases
 zinit light mdumitru/git-aliases
 
-if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+elif [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
   source /usr/share/doc/fzf/examples/key-bindings.zsh
 elif command -v brew &>/dev/null; then
   FZF_SHARE="$(brew --prefix)/share/fzf"
@@ -67,7 +69,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 add_path_if_exists "/usr/local/go/bin"
 add_path_if_exists "$HOME/go/bin"
 add_path_if_exists "$HOME/.local/bin"
-add_path_if_exists "/home/linuxbrew/.linuxbrew/bin"
 
 # Extra language tooling — 'personal' profile only
 if [[ "$DOTFILES_PROFILE" == "personal" ]]; then
@@ -176,8 +177,8 @@ command -v skaffold &>/dev/null && _cache_completion skaffold completion zsh
 # Lazy-load fnm — only initialize when node/npm/npx/yarn/pnpm is first invoked.
 # Also fixes a bug where the Linux path /home/damian/... was hardcoded on macOS.
 FNM_PATH="${HOME}/.local/share/fnm"
-if [[ -d "$FNM_PATH" ]]; then
-  export PATH="$FNM_PATH:$PATH"
+if command -v fnm &>/dev/null || [[ -d "$FNM_PATH" ]]; then
+  [[ -d "$FNM_PATH" ]] && export PATH="$FNM_PATH:$PATH"
   _fnm_lazy_init() {
     unset -f node npm npx yarn pnpm 2>/dev/null
     eval "$(fnm env --use-on-cd)"
